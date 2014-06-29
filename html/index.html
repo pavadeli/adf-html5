@@ -3,6 +3,24 @@
 <head>
 </head>
 <body>
-  Test 1234
+  <div ng-app="testApp">
+    <tag-cloud tags="tags"></tag-cloud>
+  </div>
+
+  <script src="bower_components/angular/angular.js"></script>
+
+  <script>
+    angular.module('testApp', ['tagcloud'])
+      .run(function ($rootScope) {
+        $rootScope.tags = [
+          { id: 'tag1', text: 'Tag 1', value: 14},
+          { id: 'tag2', text: 'Tag 2', value: 26},
+        ];
+      });
+  </script>
+
+  <script src="bower_components/bower-tagcanvas/tagcanvas.js"></script>
+  <script src="components/tagcloud/tagcloud.js"></script>
+
 </body>
 </html>
