@@ -4,6 +4,8 @@
 </head>
 <body>
   <div ng-app="testApp">
+    <button ng-click="addTag()">Add</button>
+    Number of tags: {{tags.length}}
     <tag-cloud tags="tags"></tag-cloud>
   </div>
 
@@ -12,10 +14,18 @@
   <script>
     angular.module('testApp', ['tagcloud'])
       .run(function ($rootScope) {
-        $rootScope.tags = [
-          { id: 'tag1', text: 'Tag 1', value: 14},
-          { id: 'tag2', text: 'Tag 2', value: 26},
-        ];
+        var n = 0,
+            tags = $rootScope.tags = [];
+
+        function addTag() {
+          tags.push({ id: 'tag' + n, text: 'Tag ' + n, value: Math.floor(Math.random() * 100)});
+          ++n;
+        }
+        $rootScope.addTag = addTag;
+
+        for (var i = 0; i < 10; i++) {
+          addTag();
+        }
       });
   </script>
 

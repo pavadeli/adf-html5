@@ -1,3 +1,9 @@
 <div>
-  <span style="font-size:{{tag.value}}pt;" ng-repeat="tag in tags">{{tag.text}}</span>
+  <canvas width="300" height="300" id="{{canvasId}}">
+    <ul>
+      <li ng-repeat="tag in tags"><a data-weight="{{tag.value}}">{{tag.text}}</a></li>
+    </ul>
+  </canvas>
+  <div id="{{canvasId}}Tags">
+  </div>
 </div>
