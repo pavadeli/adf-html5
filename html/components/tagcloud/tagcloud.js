@@ -5,23 +5,20 @@ angular.module('tagcloud', [])
     return this.current++;
   }
 })
-.directive('tagCloud', function (uniqueCanvasId, $timeout) {
+.directive('tagCloud', function (uniqueCanvasId, $timeout, $interval) {
   return {
     restrict: 'E',
     scope: {
       tags: '='
     },
     templateUrl: 'components/tagcloud/tagcloud.html',
-    link: function link(scope) {
+    link: function link(scope, element) {
       var canvasId = scope.canvasId = 'canvas' + uniqueCanvasId.next(),
           started = false;
 
       scope.$watchCollection('tags', function () {
-        if (started) {
-          $timeout(function () {
-            TagCanvas.Update(canvasId);
-          });
-        } else {
+        if (!started) {
+
           $timeout(function () {
             TagCanvas.Start(canvasId, null, {
               textColour: 'red',
@@ -32,7 +29,30 @@ angular.module('tagcloud', [])
             });
           });
           started = true;
+
+        } else {
+
+          $timeout(function () {
+            TagCanvas.Update(canvasId);
+          });
+
         }
+      });
+
+      var canvas = element.find('canvas');
+      canvas
+        .css('width', '100%')
+        .css('height', '100%');
+
+      var resizeInterval = $interval(function () {
+        canvas
+          .attr('width', canvas.prop('offsetWidth'))
+          .attr('height', canvas.prop('offsetHeight'));
+      }, 500);
+
+      scope.$on('$destroy', function () {
+        $interval.cancel(resizeInterval);
+        TagCanvas.Stop(canvasId);
       });
     }
   };
