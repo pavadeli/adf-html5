@@ -40,15 +40,15 @@ angular.module('tagcloud', [])
       });
 
       var canvas = element.find('canvas');
-      canvas
-        .css('width', '100%')
-        .css('height', '100%');
+      canvas.css('width', '100%').css('height', '100%');
 
-      var resizeInterval = $interval(function () {
+      function resize() {
         canvas
           .attr('width', canvas.prop('offsetWidth'))
-          .attr('height', canvas.prop('offsetHeight'));
-      }, 500);
+          .attr('height', canvas.prop('offsetHeight'));        
+      }
+      var resizeInterval = $interval(resize, 500);
+      resize();
 
       scope.$on('$destroy', function () {
         $interval.cancel(resizeInterval);
