@@ -96,6 +96,12 @@ SET DEFINE OFF;
 Insert into WC_TAGS (ID,TAG) values (1,'referential integrity');
 Insert into WC_TAGS (ID,TAG) values (2,'hattrick');
 Insert into WC_TAGS (ID,TAG) values (3,'super goal');
+Insert into WC_TAGS (ID,TAG) values (4,'extreme heat');
+Insert into WC_TAGS (ID,TAG) values (5,'extra time');
+Insert into WC_TAGS (ID,TAG) values (6,'penalty shootout');
+Insert into WC_TAGS (ID,TAG) values (7,'red card');
+Insert into WC_TAGS (ID,TAG) values (8,'injury');
+
 REM INSERTING into WC_TEAMS
 SET DEFINE OFF;
 Insert into WC_TEAMS (ID,COUNTRY,GROUP1,SEQ_IN_GROUP,FIFA_RANK,RGN_ID) values (1,'BRA','A',1,3,4);
