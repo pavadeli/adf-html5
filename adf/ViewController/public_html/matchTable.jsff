@@ -115,7 +115,8 @@
 </af:iterator>
 </af:showDetailHeader>
    <af:popup id="p1">
-    <af:panelWindow id="pw1" title="Match Details">
+    <af:panelWindow id="pw1" title="Match Details" resize="on" modal="true"
+                    stretchChildren="first">
       <af:region value="#{bindings.matchdetailstaskflowdefinition1.regionModel}"
                  id="r1"/>
     </af:panelWindow>

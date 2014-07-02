@@ -6,6 +6,11 @@
       <name id="__3">matchId</name>
       <value>#{pageFlowScope.matchId}</value>
     </input-parameter-definition>
+    <managed-bean id="__12">
+      <managed-bean-name id="__10">matchDetailsHelperBean</managed-bean-name>
+      <managed-bean-class id="__13">demo.adfhtml.view.MatchDetailsHelperBean</managed-bean-class>
+      <managed-bean-scope id="__11">pageFlow</managed-bean-scope>
+    </managed-bean>
     <view id="matchDetails">
       <page>/matchDetails.jsff</page>
     </view>

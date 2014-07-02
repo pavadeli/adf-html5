@@ -11,31 +11,9 @@
                   shortDesc="#{bindings.Group1.hints.tooltip}" id="it12">
       <f:validator binding="#{bindings.Group1.validator}"/>
     </af:inputText>
-    <af:inputText value="#{bindings.HomeTeamId.inputValue}"
-                  label="#{bindings.HomeTeamId.hints.label}"
-                  required="#{bindings.HomeTeamId.hints.mandatory}"
-                  columns="#{bindings.HomeTeamId.hints.displayWidth}"
-                  maximumLength="#{bindings.HomeTeamId.hints.precision}"
-                  shortDesc="#{bindings.HomeTeamId.hints.tooltip}"
-                  partialTriggers="homeId" id="it3">
-      <f:validator binding="#{bindings.HomeTeamId.validator}"/>
-      <af:convertNumber groupingUsed="false"
-                        pattern="#{bindings.HomeTeamId.format}"/>
-    </af:inputText>
             <af:image id="homeFlag"  source="/images/countryflags/#{bindings.Home.inputValue}.png" />
             <af:image id="awayFlag"  source="/images/countryflags/#{bindings.Away.inputValue}.png" />
 
-    <af:inputText value="#{bindings.AwayTeamId.inputValue}"
-                  label="#{bindings.AwayTeamId.hints.label}"
-                  required="#{bindings.AwayTeamId.hints.mandatory}"
-                  columns="#{bindings.AwayTeamId.hints.displayWidth}"
-                  maximumLength="#{bindings.AwayTeamId.hints.precision}"
-                  shortDesc="#{bindings.AwayTeamId.hints.tooltip}"
-                  partialTriggers="awayId" id="it1">
-      <f:validator binding="#{bindings.AwayTeamId.validator}"/>
-      <af:convertNumber groupingUsed="false"
-                        pattern="#{bindings.AwayTeamId.format}"/>
-    </af:inputText>
     <af:inputText value="#{bindings.HomeGoals.inputValue}"
                   label="#{bindings.HomeGoals.hints.label}"
                   required="#{bindings.HomeGoals.hints.mandatory}"
@@ -56,16 +34,6 @@
       <af:convertNumber groupingUsed="false"
                         pattern="#{bindings.AwayGoals.format}"/>
     </af:inputText>
-    <af:inputText value="#{bindings.SdmId.inputValue}"
-                  label="#{bindings.SdmId.hints.label}"
-                  required="#{bindings.SdmId.hints.mandatory}"
-                  columns="#{bindings.SdmId.hints.displayWidth}"
-                  maximumLength="#{bindings.SdmId.hints.precision}"
-                  shortDesc="#{bindings.SdmId.hints.tooltip}" id="it7">
-      <f:validator binding="#{bindings.SdmId.validator}"/>
-      <af:convertNumber groupingUsed="false"
-                        pattern="#{bindings.SdmId.format}"/>
-    </af:inputText>
     <af:inputDate value="#{bindings.LocalStartTime.inputValue}"
                   label="#{bindings.LocalStartTime.hints.label}"
                   required="#{bindings.LocalStartTime.hints.mandatory}"
@@ -81,6 +49,49 @@
                   shortDesc="#{bindings.ScoringProcess.hints.tooltip}" id="it8">
       <f:validator binding="#{bindings.ScoringProcess.validator}"/>
     </af:inputText>
+    <af:panelGridLayout id="pgl1" inlineStyle="background-color:Lime;">
+      <af:gridRow marginTop="5px" height="auto" id="gr3b" >
+            <af:gridCell marginStart="5px" width="100px" id="gc9t"
+                         inlineStyle="background-color:Silver;">
+              
+        </af:gridCell>
+        <af:gridCell marginStart="5px" width="110px" id="gc11" halign="center">
+            <af:image id="homeFlag2"  source="/images/countryflags/#{bindings.Home.inputValue}.png" />
+        </af:gridCell>
+        
+        <af:gridCell marginStart="5px" marginEnd="5px" width="110px" id="gc1"
+                     halign="center">
+            <af:image id="awayFlag2"  source="/images/countryflags/#{bindings.Away.inputValue}.png" />
+        </af:gridCell>
+      </af:gridRow>
+      <af:iterator value="#{pageFlowScope.matchDetailsHelperBean.matchEvents}" var="event" id="matcheventIterator" >
+      <af:gridRow marginTop="5px" height="auto" id="gr3" >
+            <af:gridCell marginStart="5px" width="100px" id="gc9"
+                         inlineStyle="background-color:Silver;" halign="end">
+               <af:outputText id="firsthalf"  value="#{event.timeLabel}" />
+        </af:gridCell>
+        <af:gridCell marginStart="5px" width="110px" id="gc11x" halign="center">
+         <af:image id="g1"  source="/images/goal.png"
+                  inlineStyle="width:30.0px;"
+                   rendered="#{event.eventType eq 'goal' and  event.home}" />
+         <af:image id="gg1"  source="/images/goldenfootball.png"
+                  inlineStyle="width:30.0px;"
+                   rendered="#{event.eventType eq 'wop' and  event.home}" />
+        </af:gridCell>
+        
+        <af:gridCell marginStart="5px" marginEnd="5px" width="110px" id="gc1x"
+                     halign="center">
+         <af:image id="g5"  source="/images/goal.png"
+                  inlineStyle="width:30.0px;"
+                   rendered="#{event.eventType eq 'goal' and  event.away}" />
+         <af:image id="gg2"  source="/images/goldenfootball.png"
+                  inlineStyle="width:30.0px;"
+                   rendered="#{event.eventType eq 'wop' and  event.away}" />
+        </af:gridCell>
+      </af:gridRow>
+      </af:iterator>
+      
+    </af:panelGridLayout>
     <af:inputText value="#{bindings.Id.inputValue}"
                   label="#{bindings.Id.hints.label}"
                   required="#{bindings.Id.hints.mandatory}"

@@ -85,6 +85,39 @@
         wc_tags t
         on (mt.tag_id = t.id)
  union all
+ select 'extra time' tag
+ ,      m.id match_id
+ from   matches m
+ where  instr(m.scoring_process,'|') > 0 
+ union all
+ select 'penalty shootouts' tag
+ ,      m.id match_id
+ from   matches m
+ where  instr(m.scoring_process,'|') > 0 and  instr(m.scoring_process,'|') < length(m.scoring_process)
+ union all
+ select case 
+        when m.group1 is null
+        then 'knock out'
+        else 'group stage'
+        end
+ ,      m.id match_id
+ from   matches m
+ union all
+ select case 
+        when m.id between 49 and 56 then 'Round of 16'
+        when m.id between 57 and 60 then 'Quarter Final'
+        when m.id between 61 and 62 then 'Semi Final'
+        when m.id = 64 then 'Final'
+        when m.id = 63 then 'Consolation Final'
+        end
+ ,      m.id match_id
+ from   matches m
+ union all
+ select 'goalless first half' tag
+ ,      m.id match_id
+ from   matches m
+ where  instr(m.scoring_process,'-') = 1
+ union all
  select 'Surprise' tag
  ,      m.id match_id
  from   matches m
