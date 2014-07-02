@@ -1,8 +1,6 @@
 rem Some useful queries to explore the data for FIFA World Cup Football 2014
 
 -- query matches
-
----------- ------ ------------ ------------ ---------- ---------- -------------- -------------- ------------------------------ -------------- ------------------------------ -------------- ------------------------------- -------------------- ----------
  select  mr.id 
   ,      mr.group1
   ,      t1.country home_country
@@ -221,16 +219,18 @@ from   ( select match_id
        on (m.id = mt.match_id)
 
 
----  remaining matches after drilling down on one or more matches
+---  remaining matches after drilling down on one or more tags
 
-with  tag_filter as
- ( select string_table('north','comeback') selected_tags
-   from   dual
- )
- , filter_tags as
- ( select column_value filter_tag
-   from   table((select selected_tags from tag_filter))
+with  filter_tags as
+ ( select regexp_substr('north,comeback','[^,]+', 1, level) filter_tag
+   from dual
+   connect 
+   by     regexp_substr('north,comeback', '[^,]+', 1, level) is not null
  )   
+, tag_filter as
+ ( select cast( collect(filter_tag ) as string_table) selected_tags
+   from   filter_tags
+ )
  , matches as
 (  select  mr.id 
   ,      mr.group1
@@ -386,15 +386,16 @@ from   ( select match_id
 
 =====  tag cloud derived from all matches that remain after applying one or more tags
 
-
- with  tag_filter as
- ( select string_table('Intercontinental','north') selected_tags
-   from   dual
- )
- , filter_tags as
- ( select column_value filter_tag
-   from   table((select selected_tags from tag_filter))
+with  filter_tags as
+ ( select regexp_substr('north,comeback','[^,]+', 1, level) filter_tag
+   from dual
+   connect 
+   by     regexp_substr('north,comeback', '[^,]+', 1, level) is not null
  )   
+, tag_filter as
+ ( select cast( collect(filter_tag ) as string_table) selected_tags
+   from   filter_tags
+ )
  , matches as
 (  select  mr.id 
   ,      mr.group1
