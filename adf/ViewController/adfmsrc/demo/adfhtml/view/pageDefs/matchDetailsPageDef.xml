@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="matchDetailsPageDef"
+                Package="demo.adfhtml.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MatchResultsView1" RangeSize="25"
+              DataControl="WorldCupServiceDataControl"
+              id="MatchResultsView1Iterator"/>
+  </executables>
+  <bindings>
+    <listOfValues StaticList="false" IterBinding="MatchResultsView1Iterator"
+                  Uses="LOV_Home" id="Home"/>
+    <listOfValues StaticList="false" IterBinding="MatchResultsView1Iterator"
+                  Uses="LOV_Away" id="Away"/>
+    <attributeValues IterBinding="MatchResultsView1Iterator" id="Group1">
+      <AttrNames>
+        <Item Value="Group1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MatchResultsView1Iterator" id="HomeTeamId">
+      <AttrNames>
+        <Item Value="HomeTeamId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MatchResultsView1Iterator" id="AwayTeamId">
+      <AttrNames>
+        <Item Value="AwayTeamId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MatchResultsView1Iterator" id="HomeGoals">
+      <AttrNames>
+        <Item Value="HomeGoals"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MatchResultsView1Iterator" id="AwayGoals">
+      <AttrNames>
+        <Item Value="AwayGoals"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MatchResultsView1Iterator" id="SdmId">
+      <AttrNames>
+        <Item Value="SdmId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MatchResultsView1Iterator"
+                     id="LocalStartTime">
+      <AttrNames>
+        <Item Value="LocalStartTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MatchResultsView1Iterator"
+                     id="ScoringProcess">
+      <AttrNames>
+        <Item Value="ScoringProcess"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MatchResultsView1Iterator" id="Id">
+      <AttrNames>
+        <Item Value="Id"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MatchResultsView1Iterator" id="HomeCountryId">
+      <AttrNames>
+        <Item Value="HomeCountryId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MatchResultsView1Iterator" id="AwayCountryId">
+      <AttrNames>
+        <Item Value="AwayCountryId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MatchResultsView1Iterator" id="City">
+      <AttrNames>
+        <Item Value="City"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="MatchResultsView1Iterator" StaticList="false"
+          Uses="LOV_Name" id="Name" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="MatchResultsView1Iterator" id="StadiumId">
+      <AttrNames>
+        <Item Value="StadiumId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

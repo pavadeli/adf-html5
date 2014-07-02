@@ -200,7 +200,16 @@
     PrecisionRule="true"
     EntityAttrName="LocalStartTime"
     EntityUsage="MatchResult"
-    AliasName="LOCAL_START_TIME"/>
+    AliasName="LOCAL_START_TIME">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER
+          ResId="demo.adfhtml.model.MatchResultsView.LocalStartTime_FMT_FORMATTER"/>
+        <FMT_FORMAT
+          ResId="demo.adfhtml.model.MatchResultsView.LocalStartTime_FMT_FORMAT"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
   <ViewAttribute
     Name="ScoringProcess"
     PrecisionRule="true"
@@ -312,4 +321,8 @@
     ViewLink="demo.adfhtml.model.TagsViewLink"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="demo.adfhtml.model.ModelBundle"/>
+  </ResourceBundle>
 </ViewObject>

@@ -2,78 +2,122 @@
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
           xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
           xmlns:f="http://java.sun.com/jsf/core">
-  <af:panelCollection id="pc1">
-    <f:facet name="menus"/>
-    <f:facet name="toolbar"/>
-    <f:facet name="statusbar"/>
-    <af:table value="#{bindings.MatchResultsView1.collectionModel}" var="row"
-              rows="#{bindings.MatchResultsView1.rangeSize}"
-              emptyText="#{bindings.MatchResultsView1.viewable ? 'No data to display.' : 'Access Denied.'}"
-              fetchSize="#{bindings.MatchResultsView1.rangeSize}"
-              rowBandingInterval="0"
-              filterModel="#{bindings.MatchResultsView1Query.queryDescriptor}"
-              queryListener="#{bindings.MatchResultsView1Query.processQuery}"
-              filterVisible="true" varStatus="vs"
-              selectionListener="#{bindings.MatchResultsView1.collectionModel.makeCurrent}"
-              rowSelection="multiple" id="t1">
-      <af:column sortProperty="#{bindings.MatchResultsView1.hints.Id.name}"
-                 filterable="true" sortable="true"
-                 headerText="#{bindings.MatchResultsView1.hints.Id.label}"
-                 id="c3">
-        <af:outputText value="#{row.Id}" id="ot6">
-          <af:convertNumber groupingUsed="false"
-                            pattern="#{bindings.MatchResultsView1.hints.Id.format}"/>
-        </af:outputText>
-      </af:column>
-      <af:column sortProperty="#{bindings.MatchResultsView1.hints.Home.name}"
-                 filterable="true" sortable="true"
-                 headerText="#{bindings.MatchResultsView1.hints.Home.label}"
-                 id="c4">
-        <af:outputText value="#{row.Home}" id="ot2"/>
-        <af:image id="homeFlag"  source="/images/countryflags/#{row.Home}.png" />
-      </af:column>
-      <af:column sortProperty="#{bindings.MatchResultsView1.hints.Away.name}"
-                 filterable="true" sortable="true"
-                 headerText="#{bindings.MatchResultsView1.hints.Away.label}"
-                 id="c2">
-        <af:outputText value="#{row.Away}" id="ot4"/>
-        <af:image id="awayFlag"  source="/images/countryflags/#{row.Away}.png" />
-      </af:column>
-      <af:column sortProperty="#{bindings.MatchResultsView1.hints.HomeGoals.name}"
-                 filterable="true" sortable="true"
-                 headerText="#{bindings.MatchResultsView1.hints.HomeGoals.label}"
-                 id="c7">
-        <af:outputText value="#{row.HomeGoals}" id="ot7">
-          <af:convertNumber groupingUsed="false"
-                            pattern="#{bindings.MatchResultsView1.hints.HomeGoals.format}"/>
-        </af:outputText>
-      </af:column>
-      <af:column sortProperty="#{bindings.MatchResultsView1.hints.AwayGoals.name}"
-                 filterable="true" sortable="true"
-                 headerText="#{bindings.MatchResultsView1.hints.AwayGoals.label}"
-                 id="c6">
-        <af:outputText value="#{row.AwayGoals}" id="ot5">
-          <af:convertNumber groupingUsed="false"
-                            pattern="#{bindings.MatchResultsView1.hints.AwayGoals.format}"/>
-        </af:outputText>
-      </af:column>
-      <af:column sortProperty="#{bindings.MatchResultsView1.hints.Group1.name}"
-                 filterable="true" sortable="true"
-                 headerText="#{bindings.MatchResultsView1.hints.Group1.label}"
-                 id="c1">
-        <af:outputText value="#{row.Group1}" id="ot3"/>
-      </af:column>
-      <af:column sortProperty="#{bindings.MatchResultsView1.hints.LocalStartTime.name}"
-                 filterable="true" sortable="true"
-                 headerText="#{bindings.MatchResultsView1.hints.LocalStartTime.label}"
-                 id="c5">
-        <f:facet name="filter">
-          <af:inputDate value="#{vs.filterCriteria.LocalStartTime}" id="id1"/>
-        </f:facet>
-        <af:outputText value="#{row.LocalStartTime}" id="ot1">
-          <af:convertDateTime pattern="#{bindings.MatchResultsView1.hints.LocalStartTime.format}"/>
-        </af:outputText>
-      </af:column>
-    </af:table>
-  </af:panelCollection>
+  <af:inputText value="#{pageFlowScope.matchHelperBean.filteringTags}"
+                label="Tags on which matches are filtered"
+                required="#{bindings.b_selected_tags.hints.mandatory}"
+                autoSubmit="true"
+                columns="#{bindings.b_selected_tags.hints.displayWidth}"
+                shortDesc="Comma separated list of tags used to filter the set of matches"
+                id="it1">
+    <f:validator binding="#{bindings.b_selected_tags.validator}"/>
+  </af:inputText>
+      <af:panelCollection id="pc1" styleClass="AFStretchWidth">
+        <f:facet name="menus"/>
+        <f:facet name="toolbar"/>
+        <f:facet name="statusbar"/>
+        <af:table value="#{bindings.RemainingMatches1.collectionModel}"
+                  var="row" rows="#{bindings.RemainingMatches1.rangeSize}"
+                  emptyText="#{bindings.RemainingMatches1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                  fetchSize="#{bindings.RemainingMatches1.rangeSize}"
+                  rowBandingInterval="0"
+                  filterModel="#{bindings.RemainingMatches1Query.queryDescriptor}"
+                  queryListener="#{bindings.RemainingMatches1Query.processQuery}"
+                  filterVisible="true" varStatus="vs" id="t2"
+                  partialTriggers=":::it1" styleClass="AFStretchWidth">
+          <af:column sortProperty="#{bindings.RemainingMatches1.hints.MatchId.name}"
+                     filterable="true" sortable="true"
+                     headerText="#{bindings.RemainingMatches1.hints.MatchId.label}"
+                     id="c9">
+            <af:outputText value="#{row.MatchId}" id="ot8">
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.RemainingMatches1.hints.MatchId.format}"/>
+            </af:outputText>
+            <af:commandLink text="..." id="cb1">
+              <af:showPopupBehavior popupId=":::p1" triggerType="click"/>
+              <af:setPropertyListener type="action" from="#{row.MatchId}"
+                                      to="#{pageFlowScope.matchHelperBean.selectedMatchId}"/>
+            </af:commandLink>
+          </af:column>
+          <af:column sortProperty="#{bindings.RemainingMatches1.hints.HomeCountry.name}"
+                     filterable="true" sortable="true"
+                     headerText="#{bindings.RemainingMatches1.hints.HomeCountry.label}"
+                     id="c10">
+            <af:image id="homeFlag1"
+                      source="/images/countryflags/#{row.HomeCountry}.png"
+                      inlineStyle="height:25.0px;"/>
+            <af:outputText value="#{row.HomeCountry}" id="ot13"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.RemainingMatches1.hints.AwayCountry.name}"
+                     filterable="true" sortable="true"
+                     headerText="#{bindings.RemainingMatches1.hints.AwayCountry.label}"
+                     id="c12">
+            <af:outputText value="#{row.AwayCountry}" id="ot14"/>
+            <af:image id="awayFlag1"
+                      source="/images/countryflags/#{row.AwayCountry}.png"
+                      inlineStyle="height:25.0px;"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.RemainingMatches1.hints.HomeGoals.name}"
+                     filterable="true" sortable="true"
+                     headerText="#{bindings.RemainingMatches1.hints.HomeGoals.label}"
+                     id="c14">
+            <af:outputText value="#{row.HomeGoals}" id="ot16">
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.RemainingMatches1.hints.HomeGoals.format}"/>
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.RemainingMatches1.hints.AwayGoals.name}"
+                     filterable="true" sortable="true"
+                     headerText="#{bindings.RemainingMatches1.hints.AwayGoals.label}"
+                     id="c13">
+            <af:outputText value="#{row.AwayGoals}" id="ot9">
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.RemainingMatches1.hints.AwayGoals.format}"/>
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.RemainingMatches1.hints.LocalStartTime.name}"
+                     filterable="true" sortable="true"
+                     headerText="#{bindings.RemainingMatches1.hints.LocalStartTime.label}"
+                     id="c16">
+            <f:facet name="filter">
+              <af:inputDate value="#{vs.filterCriteria.LocalStartTime}"
+                            id="id2"/>
+            </f:facet>
+            <af:outputText value="#{row.LocalStartTime}" id="ot15">
+              <af:convertDateTime pattern="#{bindings.RemainingMatches1.hints.LocalStartTime.format}"/>
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.RemainingMatches1.hints.Group1.name}"
+                     filterable="true" sortable="true"
+                     headerText="#{bindings.RemainingMatches1.hints.Group1.label}"
+                     id="c11">
+            <af:outputText value="#{row.Group1}" id="ot11"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.RemainingMatches1.hints.City.name}"
+                     filterable="true" sortable="true"
+                     headerText="#{bindings.RemainingMatches1.hints.City.label}"
+                     id="c8">
+            <af:outputText value="#{row.City}" id="ot12"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.RemainingMatches1.hints.Tags.name}"
+                     filterable="true" sortable="true"
+                     headerText="#{bindings.RemainingMatches1.hints.Tags.label}"
+                     id="c15">
+            <af:outputText value="#{row.Tags}" id="ot10"/>
+          </af:column>
+        </af:table>
+      </af:panelCollection>
+  <af:showDetailHeader text="remaining tags" disclosed="true" id="sdh1"
+                       partialTriggers="it1">
+      <af:iterator id="i1" value="#{bindings.RemainingTagCloudViewObj1.collectionModel}" var="tag">
+          <af:panelList id="pl1">
+            <af:outputText value="#{tag.Tag} (#{tag.Occurrences})" id="ot3"/>
+          </af:panelList>
+</af:iterator>
+</af:showDetailHeader>
+   <af:popup id="p1">
+    <af:panelWindow id="pw1" title="Match Details">
+      <af:region value="#{bindings.matchdetailstaskflowdefinition1.regionModel}"
+                 id="r1"/>
+    </af:panelWindow>
+  </af:popup>
 </jsp:root>

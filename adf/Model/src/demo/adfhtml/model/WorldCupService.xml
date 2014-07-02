@@ -28,4 +28,10 @@
   <ViewUsage
     Name="TeamsView1"
     ViewObjectName="demo.adfhtml.model.TeamsView"/>
+  <ViewUsage
+    Name="RemainingMatches1"
+    ViewObjectName="demo.adfhtml.model.RemainingMatches"/>
+  <ViewUsage
+    Name="RemainingTagCloudViewObj1"
+    ViewObjectName="demo.adfhtml.model.RemainingTagCloudViewObj"/>
 </AppModule>

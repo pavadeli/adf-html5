@@ -12,12 +12,20 @@
           usageId="demo_adfhtml_view_matchTablePageDef"/>
     <page path="/MatchCenter.jspx"
           usageId="demo_adfhtml_view_MatchCenterPageDef"/>
+    <page path="/matchDetails.jsff"
+          usageId="demo_adfhtml_view_matchDetailsPageDef"/>
+    <page path="/WEB-INF/match-details-task-flow-definition.xml#match-details-task-flow-definition@SetCurrentRowWithKeyValue"
+          usageId="demo_adfhtml_view_match_details_task_flow_definition_match_details_task_flow_definition_SetCurrentRowWithKeyValuePageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="demo_adfhtml_view_matchTablePageDef"
           path="demo.adfhtml.view.pageDefs.matchTablePageDef"/>
     <page id="demo_adfhtml_view_MatchCenterPageDef"
           path="demo.adfhtml.view.pageDefs.MatchCenterPageDef"/>
+    <page id="demo_adfhtml_view_matchDetailsPageDef"
+          path="demo.adfhtml.view.pageDefs.matchDetailsPageDef"/>
+    <page id="demo_adfhtml_view_match_details_task_flow_definition_match_details_task_flow_definition_SetCurrentRowWithKeyValuePageDef"
+          path="demo.adfhtml.view.pageDefs.match_details_task_flow_definition_match_details_task_flow_definition_SetCurrentRowWithKeyValuePageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <BC4JDataControl id="WorldCupServiceDataControl"

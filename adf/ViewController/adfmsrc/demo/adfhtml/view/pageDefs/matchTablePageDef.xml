@@ -4,26 +4,72 @@
                 Package="demo.adfhtml.view.pageDefs">
   <parameters/>
   <executables>
-    <variableIterator id="variables"/>
+    <variableIterator id="variables">
+      <variableUsage DataControl="WorldCupServiceDataControl"
+                     Binds="RemainingMatches1.variablesMap.b_selected_tags"
+                     Name="ExecuteWithParams_b_selected_tags"
+                     IsQueriable="false"/>
+    </variableIterator>
     <iterator Binds="MatchResultsView1" RangeSize="25"
               DataControl="WorldCupServiceDataControl"
               id="MatchResultsView1Iterator"/>
     <searchRegion Binds="MatchResultsView1Iterator" Criteria=""
                   Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
                   id="MatchResultsView1Query"/>
+    <taskFlow id="matchdetailstaskflowdefinition1"
+              taskFlowId="/WEB-INF/match-details-task-flow-definition.xml#match-details-task-flow-definition"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"
+              Refresh="ifNeeded">
+      <parameters>
+        <parameter id="matchId"
+                   value="#{pageFlowScope.matchHelperBean.selectedMatchId}"/>
+      </parameters>
+    </taskFlow>
+    <iterator Binds="RemainingMatches1" RangeSize="25"
+              DataControl="WorldCupServiceDataControl"
+              id="RemainingMatches1Iterator" ChangeEventPolicy="ppr"/>
+    <searchRegion Binds="RemainingMatches1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="RemainingMatches1Query"/>
+    <iterator Binds="RemainingTagCloudViewObj1" RangeSize="25"
+              DataControl="WorldCupServiceDataControl"
+              id="RemainingTagCloudViewObj1Iterator"/>
   </executables>
   <bindings>
-    <tree IterBinding="MatchResultsView1Iterator" id="MatchResultsView1">
-      <nodeDefinition DefName="demo.adfhtml.model.MatchResultsView"
-                      Name="MatchResultsView10">
+    <tree IterBinding="RemainingMatches1Iterator" id="RemainingMatches1">
+      <nodeDefinition DefName="demo.adfhtml.model.RemainingMatches"
+                      Name="RemainingMatches10">
         <AttrNames>
-          <Item Value="Id"/>
-          <Item Value="Home"/>
-          <Item Value="Away"/>
+          <Item Value="MatchId"/>
+          <Item Value="HomeCountry"/>
+          <Item Value="AwayCountry"/>
           <Item Value="HomeGoals"/>
           <Item Value="AwayGoals"/>
-          <Item Value="Group1"/>
           <Item Value="LocalStartTime"/>
+          <Item Value="Group1"/>
+          <Item Value="City"/>
+          <Item Value="Tags"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="RemainingMatches1Iterator" id="ExecuteWithParams"
+            RequiresUpdateModel="true" Action="executeWithParams">
+      <NamedData NDName="b_selected_tags" NDType="java.lang.String"
+                 NDValue="${bindings.ExecuteWithParams_b_selected_tags}"/>
+    </action>
+    <attributeValues IterBinding="variables" id="b_selected_tags">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_b_selected_tags"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="RemainingTagCloudViewObj1Iterator"
+          id="RemainingTagCloudViewObj1" ChangeEventPolicy="ppr">
+      <nodeDefinition DefName="demo.adfhtml.model.RemainingTagCloudViewObj"
+                      Name="RemainingTagCloudViewObj10">
+        <AttrNames>
+          <Item Value="Tag"/>
+          <Item Value="Occurrences"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelFormLayout id="pfl1">
+    <af:inputText value="#{bindings.Group1.inputValue}"
+                  label="#{bindings.Group1.hints.label}"
+                  required="#{bindings.Group1.hints.mandatory}"
+                  columns="#{bindings.Group1.hints.displayWidth}"
+                  maximumLength="#{bindings.Group1.hints.precision}"
+                  shortDesc="#{bindings.Group1.hints.tooltip}" id="it12">
+      <f:validator binding="#{bindings.Group1.validator}"/>
+    </af:inputText>
+    <af:inputText value="#{bindings.HomeTeamId.inputValue}"
+                  label="#{bindings.HomeTeamId.hints.label}"
+                  required="#{bindings.HomeTeamId.hints.mandatory}"
+                  columns="#{bindings.HomeTeamId.hints.displayWidth}"
+                  maximumLength="#{bindings.HomeTeamId.hints.precision}"
+                  shortDesc="#{bindings.HomeTeamId.hints.tooltip}"
+                  partialTriggers="homeId" id="it3">
+      <f:validator binding="#{bindings.HomeTeamId.validator}"/>
+      <af:convertNumber groupingUsed="false"
+                        pattern="#{bindings.HomeTeamId.format}"/>
+    </af:inputText>
+            <af:image id="homeFlag"  source="/images/countryflags/#{bindings.Home.inputValue}.png" />
+            <af:image id="awayFlag"  source="/images/countryflags/#{bindings.Away.inputValue}.png" />
+
+    <af:inputText value="#{bindings.AwayTeamId.inputValue}"
+                  label="#{bindings.AwayTeamId.hints.label}"
+                  required="#{bindings.AwayTeamId.hints.mandatory}"
+                  columns="#{bindings.AwayTeamId.hints.displayWidth}"
+                  maximumLength="#{bindings.AwayTeamId.hints.precision}"
+                  shortDesc="#{bindings.AwayTeamId.hints.tooltip}"
+                  partialTriggers="awayId" id="it1">
+      <f:validator binding="#{bindings.AwayTeamId.validator}"/>
+      <af:convertNumber groupingUsed="false"
+                        pattern="#{bindings.AwayTeamId.format}"/>
+    </af:inputText>
+    <af:inputText value="#{bindings.HomeGoals.inputValue}"
+                  label="#{bindings.HomeGoals.hints.label}"
+                  required="#{bindings.HomeGoals.hints.mandatory}"
+                  columns="#{bindings.HomeGoals.hints.displayWidth}"
+                  maximumLength="#{bindings.HomeGoals.hints.precision}"
+                  shortDesc="#{bindings.HomeGoals.hints.tooltip}" id="it5">
+      <f:validator binding="#{bindings.HomeGoals.validator}"/>
+      <af:convertNumber groupingUsed="false"
+                        pattern="#{bindings.HomeGoals.format}"/>
+    </af:inputText>
+    <af:inputText value="#{bindings.AwayGoals.inputValue}"
+                  label="#{bindings.AwayGoals.hints.label}"
+                  required="#{bindings.AwayGoals.hints.mandatory}"
+                  columns="#{bindings.AwayGoals.hints.displayWidth}"
+                  maximumLength="#{bindings.AwayGoals.hints.precision}"
+                  shortDesc="#{bindings.AwayGoals.hints.tooltip}" id="it9">
+      <f:validator binding="#{bindings.AwayGoals.validator}"/>
+      <af:convertNumber groupingUsed="false"
+                        pattern="#{bindings.AwayGoals.format}"/>
+    </af:inputText>
+    <af:inputText value="#{bindings.SdmId.inputValue}"
+                  label="#{bindings.SdmId.hints.label}"
+                  required="#{bindings.SdmId.hints.mandatory}"
+                  columns="#{bindings.SdmId.hints.displayWidth}"
+                  maximumLength="#{bindings.SdmId.hints.precision}"
+                  shortDesc="#{bindings.SdmId.hints.tooltip}" id="it7">
+      <f:validator binding="#{bindings.SdmId.validator}"/>
+      <af:convertNumber groupingUsed="false"
+                        pattern="#{bindings.SdmId.format}"/>
+    </af:inputText>
+    <af:inputDate value="#{bindings.LocalStartTime.inputValue}"
+                  label="#{bindings.LocalStartTime.hints.label}"
+                  required="#{bindings.LocalStartTime.hints.mandatory}"
+                  shortDesc="#{bindings.LocalStartTime.hints.tooltip}" id="id1">
+      <f:validator binding="#{bindings.LocalStartTime.validator}"/>
+      <af:convertDateTime pattern="#{bindings.LocalStartTime.format}"/>
+    </af:inputDate>
+    <af:inputText value="#{bindings.ScoringProcess.inputValue}"
+                  label="#{bindings.ScoringProcess.hints.label}"
+                  required="#{bindings.ScoringProcess.hints.mandatory}"
+                  columns="#{bindings.ScoringProcess.hints.displayWidth}"
+                  maximumLength="#{bindings.ScoringProcess.hints.precision}"
+                  shortDesc="#{bindings.ScoringProcess.hints.tooltip}" id="it8">
+      <f:validator binding="#{bindings.ScoringProcess.validator}"/>
+    </af:inputText>
+    <af:inputText value="#{bindings.Id.inputValue}"
+                  label="#{bindings.Id.hints.label}"
+                  required="#{bindings.Id.hints.mandatory}"
+                  columns="#{bindings.Id.hints.displayWidth}"
+                  maximumLength="#{bindings.Id.hints.precision}"
+                  shortDesc="#{bindings.Id.hints.tooltip}" id="it4">
+      <f:validator binding="#{bindings.Id.validator}"/>
+      <af:convertNumber groupingUsed="false" pattern="#{bindings.Id.format}"/>
+    </af:inputText>
+    <af:inputListOfValues id="homeId"
+                          popupTitle="Search and Select: #{bindings.Home.hints.label}"
+                          value="#{bindings.Home.inputValue}"
+                          label="#{bindings.Home.hints.label}"
+                          model="#{bindings.Home.listOfValuesModel}"
+                          required="#{bindings.Home.hints.mandatory}"
+                          columns="#{bindings.Home.hints.displayWidth}"
+                          shortDesc="#{bindings.Home.hints.tooltip}">
+      <f:validator binding="#{bindings.Home.validator}"/>
+    </af:inputListOfValues>
+    <af:inputText value="#{bindings.HomeCountryId.inputValue}"
+                  label="#{bindings.HomeCountryId.hints.label}"
+                  required="#{bindings.HomeCountryId.hints.mandatory}"
+                  columns="#{bindings.HomeCountryId.hints.displayWidth}"
+                  maximumLength="#{bindings.HomeCountryId.hints.precision}"
+                  shortDesc="#{bindings.HomeCountryId.hints.tooltip}" id="it6">
+      <f:validator binding="#{bindings.HomeCountryId.validator}"/>
+      <af:convertNumber groupingUsed="false"
+                        pattern="#{bindings.HomeCountryId.format}"/>
+    </af:inputText>
+    <af:inputListOfValues id="awayId"
+                          popupTitle="Search and Select: #{bindings.Away.hints.label}"
+                          value="#{bindings.Away.inputValue}"
+                          label="#{bindings.Away.hints.label}"
+                          model="#{bindings.Away.listOfValuesModel}"
+                          required="#{bindings.Away.hints.mandatory}"
+                          columns="#{bindings.Away.hints.displayWidth}"
+                          shortDesc="#{bindings.Away.hints.tooltip}">
+      <f:validator binding="#{bindings.Away.validator}"/>
+    </af:inputListOfValues>
+    <af:inputText value="#{bindings.AwayCountryId.inputValue}"
+                  label="#{bindings.AwayCountryId.hints.label}"
+                  required="#{bindings.AwayCountryId.hints.mandatory}"
+                  columns="#{bindings.AwayCountryId.hints.displayWidth}"
+                  maximumLength="#{bindings.AwayCountryId.hints.precision}"
+                  shortDesc="#{bindings.AwayCountryId.hints.tooltip}" id="it10">
+      <f:validator binding="#{bindings.AwayCountryId.validator}"/>
+      <af:convertNumber groupingUsed="false"
+                        pattern="#{bindings.AwayCountryId.format}"/>
+    </af:inputText>
+    <af:inputText value="#{bindings.City.inputValue}"
+                  label="#{bindings.City.hints.label}"
+                  required="#{bindings.City.hints.mandatory}"
+                  columns="#{bindings.City.hints.displayWidth}"
+                  maximumLength="#{bindings.City.hints.precision}"
+                  shortDesc="#{bindings.City.hints.tooltip}" id="it2">
+      <f:validator binding="#{bindings.City.validator}"/>
+    </af:inputText>
+    <af:selectOneChoice value="#{bindings.Name.inputValue}"
+                        label="#{bindings.Name.label}"
+                        required="#{bindings.Name.hints.mandatory}"
+                        shortDesc="#{bindings.Name.hints.tooltip}" id="soc1">
+      <f:selectItems value="#{bindings.Name.items}" id="si1"/>
+    </af:selectOneChoice>
+    <af:inputText value="#{bindings.StadiumId.inputValue}"
+                  label="#{bindings.StadiumId.hints.label}"
+                  required="#{bindings.StadiumId.hints.mandatory}"
+                  columns="#{bindings.StadiumId.hints.displayWidth}"
+                  maximumLength="#{bindings.StadiumId.hints.precision}"
+                  shortDesc="#{bindings.StadiumId.hints.tooltip}" id="it11">
+      <f:validator binding="#{bindings.StadiumId.validator}"/>
+      <af:convertNumber groupingUsed="false"
+                        pattern="#{bindings.StadiumId.format}"/>
+    </af:inputText>
+    <f:facet name="footer">
+      <af:commandButton text="Submit" id="cb1"/>
+    </f:facet>
+  </af:panelFormLayout>
+</jsp:root>
