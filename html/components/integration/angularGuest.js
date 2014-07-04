@@ -23,6 +23,8 @@
     });
 
   OTNBootstrapper.registerBootstrapper('tagcloud', function (node) {
+    if (!node.classList.contains('guest-component:')) return;
+
     angular.element(node).html('<tag-cloud tags="tags" tag-clicked="toHost({clicked:tag.id})"></tag-cloud>');
     angular.bootstrap(node, ['angularGuest', 'tagcloud']);
   });
