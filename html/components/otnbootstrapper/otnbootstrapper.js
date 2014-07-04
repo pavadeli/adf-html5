@@ -16,21 +16,24 @@
       selector = (selector ? selector + ',.' : '.') + id;
     }
 
-    var nodes = document.querySelectorAll(selector);
-    for (var i = 0, n = nodes.length; i < n; i++) {
-      bootstrapNode(nodes[i], arguments);
+    var elements = document.querySelectorAll(selector);
+    for (var i = 0, n = elements.length; i < n; i++) {
+      bootstrapNode(elements[i], arguments);
     }
   }
 
-  function bootstrapNode(node, args) {
-    var classes = node.classList;
+  function bootstrapNode(element, args) {
+    if (element.guestBootstrapped) return;
+
+    var classes = element.classList;
 
     for (var i = 0, n = classes.length; i < n; i++) {
       var bootstrapper = components[classes[i]];
       if (bootstrapper) {
         var copy = Array.prototype.slice.call(args);
-        copy.unshift(node);
-        bootstrapper.apply(this, copy)
+        copy.unshift(element);
+        bootstrapper.apply(this, copy);
+        element.guestBootstrapped = true;
       }
     }
   }

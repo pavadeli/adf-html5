@@ -1,8 +1,3 @@
-angular.module('tagcloud').run(['$templateCache', function($templateCache) {
-  $templateCache.put('components/tagcloud/tagcloud.html',
-    '<canvas id="{{canvasId}}" width="100" height="100"><ul><li ng-repeat="tag in tags"><a data-weight="{{tag.value}}" ng-click="tagClicked({tag:tag})">{{tag.text}}</a></li></ul></canvas>');
-}]);
-
 /**
  * @license AngularJS v1.2.18
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -23316,3 +23311,7 @@ angular.module('tagcloud', [])
     }
   };
 });
+angular.module('tagcloud').run(['$templateCache', function($templateCache) {
+  $templateCache.put('components/tagcloud/tagcloud.html',
+    '<canvas id="{{canvasId}}" width="100" height="100"><ul><li ng-repeat="tag in tags"><a data-weight="{{tag.value}}" ng-click="tagClicked({tag:tag})">{{tag.text}}</a></li></ul></canvas>');
+}]);
