@@ -1,6 +1,6 @@
 angular.module('tagcloud').run(['$templateCache', function($templateCache) {
   $templateCache.put('components/tagcloud/tagcloud.html',
-    '<canvas id="{{canvasId}}"><ul><li ng-repeat="tag in tags"><a data-weight="{{tag.value}}">{{tag.text}}</a></li></ul></canvas>');
+    '<canvas id="{{canvasId}}" width="100" height="100"><ul><li ng-repeat="tag in tags"><a data-weight="{{tag.value}}" ng-click="tagClicked({tag:tag})">{{tag.text}}</a></li></ul></canvas>');
 }]);
 
 /**
@@ -23256,14 +23256,18 @@ angular.module('tagcloud', [])
   return {
     restrict: 'E',
     scope: {
-      tags: '='
+      tags: '=',
+      tagClicked: '&'
     },
     templateUrl: 'components/tagcloud/tagcloud.html',
     link: function link(scope, element) {
       var canvasId = scope.canvasId = 'canvas' + uniqueCanvasId.next(),
-          started = false;
+          started = false,
+          starting = false;
 
       scope.$watchCollection('tags', function () {
+        if (starting && !started) return;
+
         if (!started) {
 
           $timeout(function () {
@@ -23272,10 +23276,16 @@ angular.module('tagcloud', [])
               weight: true,
               weightFrom: 'data-weight',
               weightMode: 'size',
-              weightSize: 0.6
+              weightSize: 0.6,
+              clickToFront: 300,
+              // freezeActive: true,
+              // freezeDecel: true,
+              // inverse: true
+              dragControl: true
             });
-          });
-          started = true;
+            started = true;
+          }, 500);
+          starting = true;
 
         } else {
 
@@ -23290,9 +23300,11 @@ angular.module('tagcloud', [])
       canvas.css('width', '100%').css('height', '100%');
 
       function resize() {
-        canvas
-          .attr('width', canvas.prop('offsetWidth'))
-          .attr('height', canvas.prop('offsetHeight'));        
+        if (canvas.prop('offsetWidth') && canvas.prop('offsetHeight')) {
+          canvas
+            .attr('width', canvas.prop('offsetWidth'))
+            .attr('height', canvas.prop('offsetHeight'));
+        }
       }
       var resizeInterval = $interval(resize, 500);
       resize();

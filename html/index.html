@@ -3,34 +3,28 @@
 <head>
 </head>
 <body>
-  <div ng-app="testApp" style="width:500px; height:500px;">
-    <button ng-click="addTag()">Add</button>
-    Number of tags: {{tags.length}}
-    <tag-cloud tags="tags"></tag-cloud>
-  </div>
+  <div class="guest-component: tagcloud myId1;" style="width:500px; height:500px;"></div>
 
   <script src="bower_components/angular/angular.js"></script>
-
-  <script>
-    angular.module('testApp', ['tagcloud'])
-      .run(function ($rootScope) {
-        var n = 0,
-            tags = $rootScope.tags = [];
-
-        function addTag() {
-          tags.push({ id: 'tag' + n, text: 'Tag ' + n, value: Math.floor(Math.random() * 100)});
-          ++n;
-        }
-        $rootScope.addTag = addTag;
-
-        for (var i = 0; i < 10; i++) {
-          addTag();
-        }
-      });
-  </script>
-
   <script src="bower_components/bower-tagcanvas/tagcanvas.js"></script>
   <script src="components/tagcloud/tagcloud.js"></script>
+
+  <script src="components/otnbridge/otnbridge.js"></script>
+  <script src="components/otnbootstrapper/otnbootstrapper.js"></script>
+  <!--<script src="components/integration/adfHost.js"></script>-->
+  <script src="components/integration/angularGuest.js"></script>
+
+  <script>
+    // Mock host...
+    OTNBridge.registerHost(function (msg) {
+      window.alert('Message to host: ' + JSON.stringify(msg));
+    });
+    OTNBootstrapper.bootstrap();
+
+    OTNBridge.toGuest('myId1', {
+      tags: [{"id":"tag0","text":"Tag 0","value":65},{"id":"tag1","text":"Tag 1","value":33},{"id":"tag2","text":"Tag 2","value":29},{"id":"tag3","text":"Tag 3","value":73},{"id":"tag4","text":"Tag 4","value":72},{"id":"tag5","text":"Tag 5","value":73},{"id":"tag6","text":"Tag 6","value":93},{"id":"tag7","text":"Tag 7","value":56},{"id":"tag8","text":"Tag 8","value":58},{"id":"tag9","text":"Tag 9","value":23}]
+    });
+  </script>
 
 </body>
 </html>
