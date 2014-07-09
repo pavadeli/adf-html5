@@ -16,6 +16,7 @@
           usageId="demo_adfhtml_view_matchDetailsPageDef"/>
     <page path="/WEB-INF/match-details-task-flow-definition.xml#match-details-task-flow-definition@SetCurrentRowWithKeyValue"
           usageId="demo_adfhtml_view_match_details_task_flow_definition_match_details_task_flow_definition_SetCurrentRowWithKeyValuePageDef"/>
+    <page path="/tagcloud.jsff" usageId="demo_adfhtml_view_tagcloudPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="demo_adfhtml_view_matchTablePageDef"
@@ -26,8 +27,12 @@
           path="demo.adfhtml.view.pageDefs.matchDetailsPageDef"/>
     <page id="demo_adfhtml_view_match_details_task_flow_definition_match_details_task_flow_definition_SetCurrentRowWithKeyValuePageDef"
           path="demo.adfhtml.view.pageDefs.match_details_task_flow_definition_match_details_task_flow_definition_SetCurrentRowWithKeyValuePageDef"/>
+    <page id="demo_adfhtml_view_tagcloudPageDef"
+          path="demo.adfhtml.view.pageDefs.tagcloudPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
+    <dc id="EventConsumer" path="demo.adfhtml.view.EventConsumer"/>
+    <dc id="EventPublisher" path="demo.adfhtml.view.EventPublisher"/>
     <BC4JDataControl id="WorldCupServiceDataControl"
                      Package="demo.adfhtml.model"
                      FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"

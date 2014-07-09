@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="tagcloud-task-flow-definition">
+    <default-activity id="__1">tagcloud</default-activity>
+    <input-parameter-definition id="__7">
+      <name id="__6">tags</name>
+      <value>#{pageFlowScope.tagCloudBean.tags}</value>
+      <class>java.util.List</class>
+    </input-parameter-definition>
+    <managed-bean id="__4">
+      <managed-bean-name id="__5">tagCloudBean</managed-bean-name>
+      <managed-bean-class id="__3">demo.adfhtml.view.TagCloudBean</managed-bean-class>
+      <managed-bean-scope id="__2">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="tagcloud">
+      <page>/tagcloud.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

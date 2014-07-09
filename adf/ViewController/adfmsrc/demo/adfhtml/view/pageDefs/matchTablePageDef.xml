@@ -35,6 +35,14 @@
     <iterator Binds="RemainingTagCloudViewObj1" RangeSize="25"
               DataControl="WorldCupServiceDataControl"
               id="RemainingTagCloudViewObj1Iterator"/>
+    <taskFlow id="tagcloudtaskflowdefinition1"
+              taskFlowId="/WEB-INF/tagcloud-task-flow-definition.xml#tagcloud-task-flow-definition"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="tags" value="#{pageFlowScope.matchHelperBean.tags}"/>
+      </parameters>
+    </taskFlow>
   </executables>
   <bindings>
     <tree IterBinding="RemainingMatches1Iterator" id="RemainingMatches1">
@@ -73,5 +81,18 @@
         </AttrNames>
       </nodeDefinition>
     </tree>
+    <methodAction id="handleEvent" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="handleEvent"
+                  IsViewObjectMethod="false" DataControl="EventConsumer"
+                  InstanceName="EventConsumer.dataProvider">
+      <NamedData NDName="payload" NDType="java.lang.Object" NDValue="${payLoad}"/>
+    </methodAction>
   </bindings>
+  <eventMap xmlns="http://xmlns.oracle.com/adfm/contextualEvent">
+    <event name="TagSelectionChanged">
+      <producer region="*">
+        <consumer handler="handleEvent" />
+      </producer>
+    </event>
+  </eventMap>
 </pageDefinition>

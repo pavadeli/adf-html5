@@ -1,5 +1,11 @@
 package demo.adfhtml.view;
 
+import javax.el.ELContext;
+
+import javax.el.ExpressionFactory;
+
+import javax.el.ValueExpression;
+
 import javax.faces.context.FacesContext;
 
 import oracle.adf.model.binding.DCBindingContainer;
@@ -65,4 +71,16 @@ public class ADFHelper {
            return (DCBindingContainer)getBindingContainer();
        }
 
+    public static Object evaluateEL(String el) {
+           FacesContext fc = FacesContext.getCurrentInstance();
+           ELContext elContext = fc.getELContext();
+           ExpressionFactory ef = fc.getApplication().getExpressionFactory();
+           ValueExpression exp =
+               ef.createValueExpression(elContext, el, Object.class);
+           Object obj = exp.getValue(elContext);
+           return obj;
+       }
+
 }
+
+

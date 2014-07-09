@@ -1,8 +1,12 @@
 package demo.adfhtml.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import oracle.adf.model.binding.DCIteratorBinding;
 import oracle.adf.share.logging.ADFLogger;
 
+import oracle.jbo.Row;
 import oracle.jbo.ViewObject;
 import oracle.jbo.domain.Number;
 
@@ -50,6 +54,18 @@ public class MatchHelperBean {
         remainingTagCloudVO.ensureVariableManager().setVariableValue("b_selected_tags",      filteringTags); 
         iterTags.executeQuery();
 
+    }
+
+    public List<Tag> getTags() {
+        List<Tag> tags = new ArrayList<Tag>();
+        DCIteratorBinding tagiter = ADFHelper.findIterator("RemainingTagCloudViewObj1Iterator");
+        Row[] rows = tagiter.getAllRowsInRange();  
+        
+        for (Row row : rows) {  
+            tags.add(new Tag((String)row.getAttribute("Tag"), ((oracle.jbo.domain.Number)row.getAttribute("Occurrences")).intValue(), (Boolean)true));            
+        } 
+        
+        return tags;
     }
 
     public String getFilteringTags() {
