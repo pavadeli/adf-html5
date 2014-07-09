@@ -2,7 +2,7 @@
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
           xmlns:af="http://xmlns.oracle.com/adf/faces/rich" version="2.1"
           xmlns:f="http://java.sun.com/jsf/core">
-  <af:panelBox text="Tag Cloud" id="pb1" binding="#{pageFlowScope.tagCloudBean.tagCloudUIComponent}" >
+  <af:panelBox text="#{bnd.TAG_CLOUD}" id="pb1" binding="#{pageFlowScope.tagCloudBean.tagCloudUIComponent}" >
     <f:facet name="toolbar"/>
     <af:inputText value="#{pageFlowScope.tagCloudBean.selectedTags}"
                   label="Tags on which matches are filtered" autoSubmit="true"

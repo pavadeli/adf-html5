@@ -23,7 +23,7 @@
                       styleClass="AFStretchWidth">
               <af:column sortProperty="#{bindings.RemainingMatches1.hints.MatchId.name}"
                          filterable="true" sortable="true"
-                         headerText="#{bindings.RemainingMatches1.hints.MatchId.label}"
+                         headerText="#{bnd.MATCH_NUMBER_COLUMN_TITLE}"
                          id="c9">
                 <af:outputText value="#{row.MatchId}" id="ot8">
                   <af:convertNumber groupingUsed="false"
@@ -55,8 +55,7 @@
               </af:column>
               <af:column sortProperty="#{bindings.RemainingMatches1.hints.HomeGoals.name}"
                          filterable="true" sortable="true"
-                         headerText="#{bindings.RemainingMatches1.hints.HomeGoals.label}"
-                         id="c14">
+                         headerText="#{bnd.HOME_GOALS_COLUMN_TITLE}" id="c14">
                 <af:outputText value="#{row.HomeGoals}" id="ot16">
                   <af:convertNumber groupingUsed="false"
                                     pattern="#{bindings.RemainingMatches1.hints.HomeGoals.format}"/>
@@ -64,7 +63,7 @@
               </af:column>
               <af:column sortProperty="#{bindings.RemainingMatches1.hints.AwayGoals.name}"
                          filterable="true" sortable="true"
-                         headerText="#{bindings.RemainingMatches1.hints.AwayGoals.label}"
+                         headerText="#{bnd.AWAY_GOALS_COLUMN_TITLE}"
                          id="c13">
                 <af:outputText value="#{row.AwayGoals}" id="ot9">
                   <af:convertNumber groupingUsed="false"

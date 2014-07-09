@@ -9,10 +9,19 @@
       <af:form id="f1">
         <af:panelStretchLayout topHeight="50px" id="psl1">
           <f:facet name="top">
-            <af:panelHeader text="World Cup Football 2014 - Match Center" id="ph1">
+            <af:panelHeader text="World Cup Football 2014 - #{bnd.MATCH_CENTER_HEADER}"
+                            id="ph1">
               <f:facet name="context"/>
               <f:facet name="menuBar"/>
-              <f:facet name="toolbar"/>
+              <f:facet name="toolbar">
+                <af:panelGroupLayout layout="scroll" id="pgl1">
+                  <af:selectOneChoice label="Select language" autoSubmit="true"
+                                      value="#{localeBean.language}" id="soc1">
+                    <af:selectItem label="Dutch" value="nl" id="si2"/>
+                    <af:selectItem label="English" value="en" id="si1"/>
+                  </af:selectOneChoice>
+                </af:panelGroupLayout>
+              </f:facet>
               <f:facet name="legend"/>
               <f:facet name="info"/>
             </af:panelHeader>
