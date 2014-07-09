@@ -3,8 +3,12 @@ package demo.adfhtml.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import oracle.adf.model.BindingContext;
 import oracle.adf.model.binding.DCIteratorBinding;
 import oracle.adf.share.logging.ADFLogger;
+
+import oracle.binding.BindingContainer;
+import oracle.binding.OperationBinding;
 
 import oracle.jbo.Row;
 import oracle.jbo.ViewObject;
@@ -53,6 +57,16 @@ public class MatchHelperBean {
         // set bind parameter value on parent view object
         remainingTagCloudVO.ensureVariableManager().setVariableValue("b_selected_tags",      filteringTags); 
         iterTags.executeQuery();
+
+        // now tell the world about the changed remaining tagcloud - now that the set of matches has been changed
+        
+        BindingContext bindingContext = BindingContext.getCurrent();
+        BindingContainer bindingContainer = bindingContext.getCurrentBindingsEntry();
+        OperationBinding binding = bindingContainer.getOperationBinding("publishAvailableTagsCollectionChangedEvent");
+        _logger.warning(" operation binding is found "+binding);
+        binding.getParamsMap().put("payload", getTags());
+        binding.execute();
+        _logger.warning("AvailableTagsCollectionChangedEvent has been published");
 
     }
 

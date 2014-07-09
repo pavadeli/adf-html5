@@ -241,6 +241,12 @@ from   ( select match_id
     <DesignTime>
       <Attr Name="_DisplaySize" Value="3"/>
     </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="demo.adfhtml.model.RemainingMatches.HomeCountry_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
   </ViewAttribute>
   <ViewAttribute
     Name="AwayCountry"
@@ -257,6 +263,12 @@ from   ( select match_id
     <DesignTime>
       <Attr Name="_DisplaySize" Value="3"/>
     </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="demo.adfhtml.model.RemainingMatches.AwayCountry_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
   </ViewAttribute>
   <ViewAttribute
     Name="HomeGoals"
@@ -273,6 +285,12 @@ from   ( select match_id
     <DesignTime>
       <Attr Name="_DisplaySize" Value="3"/>
     </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="demo.adfhtml.model.RemainingMatches.HomeGoals_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
   </ViewAttribute>
   <ViewAttribute
     Name="AwayGoals"
@@ -289,6 +307,12 @@ from   ( select match_id
     <DesignTime>
       <Attr Name="_DisplaySize" Value="3"/>
     </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="demo.adfhtml.model.RemainingMatches.AwayGoals_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
   </ViewAttribute>
   <ViewAttribute
     Name="MatchId"
@@ -306,6 +330,12 @@ from   ( select match_id
     <DesignTime>
       <Attr Name="_DisplaySize" Value="3"/>
     </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="demo.adfhtml.model.RemainingMatches.MatchId_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
   </ViewAttribute>
   <ViewAttribute
     Name="LocalStartTime"
@@ -326,6 +356,8 @@ from   ( select match_id
           ResId="demo.adfhtml.model.RemainingMatches.LocalStartTime_FMT_FORMATTER"/>
         <FMT_FORMAT
           ResId="demo.adfhtml.model.RemainingMatches.LocalStartTime_FMT_FORMAT"/>
+        <LABEL
+          ResId="demo.adfhtml.model.RemainingMatches.LocalStartTime_LABEL"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>
@@ -358,6 +390,12 @@ from   ( select match_id
     <DesignTime>
       <Attr Name="_DisplaySize" Value="1"/>
     </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="demo.adfhtml.model.RemainingMatches.Group1_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
   </ViewAttribute>
   <ViewAttribute
     Name="City"

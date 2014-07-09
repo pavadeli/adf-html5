@@ -87,6 +87,16 @@
                   InstanceName="EventConsumer.dataProvider">
       <NamedData NDName="payload" NDType="java.lang.Object" NDValue="${payLoad}"/>
     </methodAction>
+    <methodAction id="publishAvailableTagsCollectionChangedEvent" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="publishEvent"
+                  IsViewObjectMethod="false" DataControl="EventPublisher"
+                  InstanceName="EventPublisher.dataProvider"
+                  ReturnName="data.EventPublisher.methodResults.publishEvent_EventPublisher_dataProvider_publishEvent_result">
+      <NamedData NDName="payload" NDType="java.lang.Object"/>
+      <events xmlns="http://xmlns.oracle.com/adfm/contextualEvent">
+    <event name="AvailableTagsCollectionChanged"/>
+  </events> 
+    </methodAction>
   </bindings>
   <eventMap xmlns="http://xmlns.oracle.com/adfm/contextualEvent">
     <event name="TagSelectionChanged">

@@ -9,7 +9,7 @@ import oracle.adf.share.logging.ADFLogger;
 public class EventPublisher {
     ADFLogger _logger = ADFLogger.createADFLogger(this.getClass());
     public Object publishEvent(Object payload) {
-        _logger.warning("publisher bean has been invoked");
+        _logger.warning("publisher bean has been invoked with payload "+payload);
         return payload;
     }
 }

@@ -36,4 +36,21 @@
                        xmlns="http://xmlns.oracle.com/adfm/adapter/bean"/>
     </Source>
   </AdapterDataControl>
+  <AdapterDataControl id="AvailableTagsCollectionChangedEventConsumer"
+                      FactoryClass="oracle.adf.model.adapter.bean.BeanDCFactoryImpl"
+                      ImplDef="oracle.adf.model.adapter.bean.BeanDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="demo.adfhtml.view.events.AvailableTagsCollectionChangedEventConsumer"
+                      BeanClass="demo.adfhtml.view.events.AvailableTagsCollectionChangedEventConsumer"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="demo.adfhtml.view.events.AvailableTagsCollectionChangedEventConsumer"/>
+    </CreatableTypes>
+    <Source>
+      <bean-definition BeanClass="demo.adfhtml.view.events.AvailableTagsCollectionChangedEventConsumer"
+                       xmlns="http://xmlns.oracle.com/adfm/adapter/bean"/>
+    </Source>
+  </AdapterDataControl>
 </DataControlConfigs>

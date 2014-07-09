@@ -31,6 +31,8 @@
           path="demo.adfhtml.view.pageDefs.tagcloudPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
+    <dc id="AvailableTagsCollectionChangedEventConsumer"
+        path="demo.adfhtml.view.AvailableTagsCollectionChangedEventConsumer"/>
     <dc id="EventConsumer" path="demo.adfhtml.view.EventConsumer"/>
     <dc id="EventPublisher" path="demo.adfhtml.view.EventPublisher"/>
     <BC4JDataControl id="WorldCupServiceDataControl"

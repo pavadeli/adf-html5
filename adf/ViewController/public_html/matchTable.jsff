@@ -2,12 +2,11 @@
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
           xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
           xmlns:f="http://java.sun.com/jsf/core">
- 
   <af:panelStretchLayout id="psl1" styleClass="AFStretchWidth "
                          inlineStyle="height:600.0px;">
     <f:facet name="bottom"/>
     <f:facet name="center">
-      <af:panelSplitter id="ps1" splitterPosition="750">
+      <af:panelSplitter id="ps1" splitterPosition="850">
         <f:facet name="first">
           <af:panelCollection id="pc1" styleClass="AFStretchWidth">
             <f:facet name="menus"/>
@@ -21,7 +20,7 @@
                       filterModel="#{bindings.RemainingMatches1Query.queryDescriptor}"
                       queryListener="#{bindings.RemainingMatches1Query.processQuery}"
                       filterVisible="true" varStatus="vs" id="t2"
-                       styleClass="AFStretchWidth">
+                      styleClass="AFStretchWidth">
               <af:column sortProperty="#{bindings.RemainingMatches1.hints.MatchId.name}"
                          filterable="true" sortable="true"
                          headerText="#{bindings.RemainingMatches1.hints.MatchId.label}"
@@ -49,10 +48,10 @@
                          filterable="true" sortable="true"
                          headerText="#{bindings.RemainingMatches1.hints.AwayCountry.label}"
                          id="c12">
-                <af:outputText value="#{row.AwayCountry}" id="ot14"/>
                 <af:image id="awayFlag1"
                           source="/images/countryflags/#{row.AwayCountry}.png"
                           inlineStyle="height:25.0px;"/>
+                <af:outputText value="#{row.AwayCountry}" id="ot14"/>
               </af:column>
               <af:column sortProperty="#{bindings.RemainingMatches1.hints.HomeGoals.name}"
                          filterable="true" sortable="true"
@@ -110,24 +109,19 @@
                                type="stretch">
             <af:region value="#{bindings.tagcloudtaskflowdefinition1.regionModel}"
                        id="r2"/>
-            <!--   <af:iterator id="i1" value="#{bindings.RemainingTagCloudViewObj1.collectionModel}" var="tag">
-          <af:panelList id="pl1">
-            <af:outputText value="#{tag.Tag} (#{tag.Occurrences})" id="ot3"/>
-          </af:panelList>
-</af:iterator>
--->
           </af:showDetailHeader>
         </f:facet>
       </af:panelSplitter>
     </f:facet>
-    <f:facet name="start"/>
-   
+    <f:facet name="start">
+    <af:spacer id="spacerLeft" width="10px" />
+    </f:facet>
     <f:facet name="end"/>
     <f:facet name="top"/>
   </af:panelStretchLayout>
-   <af:popup id="p1">
-    <af:panelWindow id="pw1" title="Match Details" resize="on" modal="true"
-                   >
+ 
+  <af:popup id="p1">
+    <af:panelWindow id="pw1" title="Match Details" resize="on" modal="true">
       <af:region value="#{bindings.matchdetailstaskflowdefinition1.regionModel}"
                  id="r1"/>
     </af:panelWindow>
