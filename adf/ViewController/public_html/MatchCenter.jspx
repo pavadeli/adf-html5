@@ -19,6 +19,7 @@
                                       value="#{localeBean.language}" id="soc1">
                     <af:selectItem label="Dutch" value="nl" id="si2"/>
                     <af:selectItem label="English" value="en" id="si1"/>
+                    <af:selectItem label="German" value="de" id="si3"/>
                   </af:selectOneChoice>
                 </af:panelGroupLayout>
               </f:facet>
