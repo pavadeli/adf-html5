@@ -321,6 +321,11 @@
     ViewLink="demo.adfhtml.model.TagsViewLink"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="GroupStandingView"
+    ViewLink="demo.adfhtml.model.MatchResultGroupStandingViewLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="demo.adfhtml.model.ModelBundle"/>

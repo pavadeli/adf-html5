@@ -34,4 +34,28 @@
   <ViewUsage
     Name="RemainingTagCloudViewObj1"
     ViewObjectName="demo.adfhtml.model.RemainingTagCloudViewObj"/>
+  <ViewUsage
+    Name="GroupStandingView1"
+    ViewObjectName="demo.adfhtml.model.GroupStandingView"/>
+  <ViewUsage
+    Name="MatchResultsView2"
+    ViewObjectName="demo.adfhtml.model.MatchResultsView"/>
+  <ViewUsage
+    Name="GroupStandingView2"
+    ViewObjectName="demo.adfhtml.model.GroupStandingView"/>
+  <ViewUsage
+    Name="GroupStandingView3"
+    ViewObjectName="demo.adfhtml.model.GroupStandingView"/>
+  <ViewLinkUsage
+    Name="MatchResultGroupStandingViewLink"
+    ViewLinkObjectName="demo.adfhtml.model.MatchResultGroupStandingViewLink"
+    SrcViewUsageName="demo.adfhtml.model.WorldCupService.MatchResultsView2"
+    DstViewUsageName="demo.adfhtml.model.WorldCupService.GroupStandingView2"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="MatchResultGroupStandingViewLink1"
+    ViewLinkObjectName="demo.adfhtml.model.MatchResultGroupStandingViewLink"
+    SrcViewUsageName="demo.adfhtml.model.WorldCupService.MatchResultsView1"
+    DstViewUsageName="demo.adfhtml.model.WorldCupService.GroupStandingView3"
+    Reversed="false"/>
 </AppModule>
