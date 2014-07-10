@@ -14,12 +14,24 @@
               <f:facet name="context"/>
               <f:facet name="menuBar"/>
               <f:facet name="toolbar">
-                <af:panelGroupLayout layout="scroll" id="pgl1">
+                <af:panelGroupLayout layout="horizontal" id="pgl1">
                   <af:selectOneChoice label="Select language" autoSubmit="true"
                                       value="#{localeBean.language}" id="soc1">
                     <af:selectItem label="Dutch" value="nl" id="si2"/>
                     <af:selectItem label="English" value="en" id="si1"/>
                     <af:selectItem label="German" value="de" id="si3"/>
+                  </af:selectOneChoice>
+                  <af:selectOneChoice id="skinsel" label="Choose Skin:"
+                                      value="#{SkinManager.skinFamily}"
+                                      autoSubmit="true"
+                                      valueChangeListener="#{SkinManager.onNewSkinSelection}">
+                         <af:selectItem id="sis4a" value="simple" label="simple"/>
+                    <af:selectItem id="sis6a" value="customSkin"
+                                   label="customSkin"/>
+                    <af:selectItem id="sis8a" value="skyros" label="skyros"/>
+                    <af:selectItem id="sis9a" value="fusion" label="fusion"/>
+                    <af:selectItem id="sis11a" value="blafplus-rich"
+                                   label="blafplus-rich"/>
                   </af:selectOneChoice>
                 </af:panelGroupLayout>
               </f:facet>

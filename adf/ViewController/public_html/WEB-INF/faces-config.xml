@@ -19,4 +19,9 @@
     <managed-bean-class>demo.adfhtml.view.i18n.LocaleBean</managed-bean-class>
     <managed-bean-scope>session</managed-bean-scope>
   </managed-bean>
+  <managed-bean>
+    <managed-bean-name>SkinManager</managed-bean-name>
+    <managed-bean-class>demo.adfhtml.view.skin.SkinManager</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
 </faces-config>
