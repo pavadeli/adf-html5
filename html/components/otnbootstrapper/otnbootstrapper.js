@@ -4,19 +4,19 @@
  *
  */
 
-(function OTNBootstrapperInit(window, document) {
+(function OTNBootstrapperInit(window) {
 
   if (window.OTNBootstrapper) return;
 
   var components = {};
 
-  function bootstrap() {
+  function bootstrap(element) {
     var selector;
     for (var id in components) {
       selector = (selector ? selector + ',.' : '.') + id;
     }
 
-    var elements = document.querySelectorAll(selector);
+    var elements = element.querySelectorAll(selector);
     for (var i = 0, n = elements.length; i < n; i++) {
       bootstrapNode(elements[i], arguments);
     }
@@ -46,4 +46,4 @@
     bootstrap: bootstrap
   };
 
-}(window, document));
+}(window));

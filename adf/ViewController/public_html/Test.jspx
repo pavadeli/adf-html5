@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
   <jsp:directive.page contentType="text/html;charset=UTF-8"/>
   <f:view>
     <af:document id="d1" title="Test page">
       <af:resource type="javascript" source="/scripts/tagcloud.js"/>
       <af:resource type="javascript" source="/scripts/integration.js"/>
-      <af:clientListener type="load" method="bootstrapGuestModules"/>
-      <af:serverListener type="guestMsg" method="#{pageFlowScope.test.guestMsg}"/>
-      <af:form id="f1" defaultCommand="cb1">
+      <af:form id="f1" defaultCommand="cb1" binding="#{backingBeanScope.otnBridge.root}" clientComponent="true"
+               shortDesc="#{backingBeanScope.otnBridge.initialiseBridge}">
+        <af:serverListener type="guestMsg" method="#{pageFlowScope.test.guestMsg}"/>
         <af:panelStretchLayout id="psl1">
           <f:facet name="top">
             <af:panelGroupLayout id="pgl3" layout="horizontal">

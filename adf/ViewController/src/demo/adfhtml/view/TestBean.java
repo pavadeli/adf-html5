@@ -2,13 +2,9 @@ package demo.adfhtml.view;
 
 import java.util.Map;
 
-import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import oracle.adf.view.rich.render.ClientEvent;
-
-import org.apache.myfaces.trinidad.render.ExtendedRenderKitService;
-import org.apache.myfaces.trinidad.util.Service;
 
 
 public class TestBean {
@@ -22,11 +18,7 @@ public class TestBean {
     }
 
     public void setTags(ActionEvent evt) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        ExtendedRenderKitService erks =
-            Service.getRenderKitService(context, ExtendedRenderKitService.class);
-        erks.addScript(context,
-                       "OTNBridge.toGuest('tc01', {tags:" + tags() + "});");
+        OTNBridge.getInstance().toGuest("tc01", "{tags:" + tags() + "}");
     }
 
     private String tags() {
