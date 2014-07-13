@@ -166,10 +166,10 @@
 'use strict';
 
 function bootstrapGuestModules(clientId) {
-  var source = AdfPage.PAGE.findComponentByAbsoluteId(clientId);
   var element = document.getElementById(clientId);
-  
-  source.OTNBridge = OTNBridge.createBridge(element, function sendMessageToHost(msg) {
+
+  element.OTNBridge = OTNBridge.createBridge(element, function sendMessageToHost(msg) {
+    var source = AdfPage.PAGE.findComponentByAbsoluteId(clientId);
     AdfCustomEvent.queue(source, 'guestMsg', msg);
   });
 
@@ -177,8 +177,8 @@ function bootstrapGuestModules(clientId) {
 }
 
 function sendMessageToGuest(clientId, guestId, message) {
-  var source = AdfPage.PAGE.findComponentByAbsoluteId(clientId);
-  source.OTNBridge.toGuest(guestId, message);
+  var element = document.getElementById(clientId);
+  element.OTNBridge.toGuest(guestId, message);
 }
 
 'use strict';
