@@ -11,6 +11,18 @@
     <iterator Binds="GroupStandingView3" RangeSize="25"
               DataControl="WorldCupServiceDataControl"
               id="GroupStandingView3Iterator"/>
+    <taskFlow id="tagcloudtaskflowdefinition1"
+              taskFlowId="/WEB-INF/tagcloud-task-flow-definition.xml#tagcloud-task-flow-definition"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="tags"
+                   value="#{pageFlowScope.matchDetailsHelperBean.tags}"/>
+      </parameters>
+    </taskFlow>
+    <iterator Binds="MatchTagCloudView1" RangeSize="25"
+              DataControl="WorldCupServiceDataControl"
+              id="MatchTagCloudView1Iterator"/>
   </executables>
   <bindings>
     <listOfValues StaticList="false" IterBinding="MatchResultsView1Iterator"
@@ -97,6 +109,15 @@
           <Item Value="GoalDifference"/>
           <Item Value="GoalsScored"/>
           <Item Value="RankInGroup"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="MatchTagCloudView1Iterator" id="MatchTagCloudView1">
+      <nodeDefinition DefName="demo.adfhtml.model.MatchTagCloudView"
+                      Name="MatchTagCloudView10">
+        <AttrNames>
+          <Item Value="Tag"/>
+          <Item Value="MatchId"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

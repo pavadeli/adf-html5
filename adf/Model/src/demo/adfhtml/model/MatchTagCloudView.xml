@@ -3,7 +3,7 @@
 <!---->
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
-  Name="RemainingTagCloudViewObj"
+  Name="MatchTagCloudView"
   Version="11.1.1.64.93"
   InheritPersonalization="true"
   BindingStyle="OracleName"
@@ -16,25 +16,11 @@
   <Properties>
     <SchemaBasedProperties>
       <LABEL
-        ResId="demo.adfhtml.model.RemainingTagCloudViewObj_LABEL"/>
+        ResId="demo.adfhtml.model.MatchTagCloudView_LABEL"/>
     </SchemaBasedProperties>
   </Properties>
-  <Variable
-    Name="b_selected_tags"
-    Kind="where"
-    Type="java.lang.String"/>
   <SQLQuery>
-    <![CDATA[with  filter_tags as
- ( select regexp_substr(:b_selected_tags,'[^,]+', 1, level) filter_tag
-   from dual
-   connect 
-   by     regexp_substr(:b_selected_tags, '[^,]+', 1, level) is not null
- )   
-, tag_filter as
- ( select cast( collect(substr(filter_tag,1,25) ) as string_table) selected_tags
-   from   filter_tags
- )
- , matches as
+    <![CDATA[with matches as
 (  select  mr.id 
   ,      mr.group1
   ,      t1.country home_country
@@ -193,26 +179,14 @@
   group 
   by     match_id
 )
-, selected_matches as
-( select match_id
-  from   match_tag_sets mts
-         cross join
-         tag_filter  tf     
-  where  tf.selected_tags SUBMULTISET  mts.tagset
-)
 select substr(tag, 1, 25) tag
-,      count(match_id) occurrences
-from   tagged
+,      m.id match_id
+from   tagged t
        join
-       selected_matches
-       using (match_id)   
-       cross join
-       tag_filter  tf     
-where  tag not member of tf.selected_tags 
-group
-by     substr(tag, 1, 25)
+       matches m
+       on (t.match_id = m.id)   
 order
-by     occurrences desc]]>
+by     tag]]>
   </SQLQuery>
   <ViewAttribute
     Name="Tag"
@@ -230,17 +204,20 @@ by     occurrences desc]]>
     </DesignTime>
   </ViewAttribute>
   <ViewAttribute
-    Name="Occurrences"
+    Name="MatchId"
     IsUpdateable="false"
     IsPersistent="false"
+    IsNotNull="true"
     PrecisionRule="true"
+    Precision="2"
+    Scale="0"
     Type="oracle.jbo.domain.Number"
     ColumnType="NUMBER"
-    AliasName="OCCURRENCES"
-    Expression="OCCURRENCES"
+    AliasName="MATCH_ID"
+    Expression="MATCH_ID"
     SQLType="NUMERIC">
     <DesignTime>
-      <Attr Name="_DisplaySize" Value="39"/>
+      <Attr Name="_DisplaySize" Value="22"/>
     </DesignTime>
   </ViewAttribute>
   <AttrArray Name="KeyAttributes">

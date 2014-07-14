@@ -130,7 +130,11 @@
                       <f:facet name="top"/>
                     </af:panelStretchLayout>
                   </af:showDetailItem>
-                  <af:showDetailItem text="Tags" id="sdi2"/>
+                  <af:showDetailItem text="Tags" id="sdi2">
+                  <af:region value="#{bindings.tagcloudtaskflowdefinition1.regionModel}"
+                             id="r1"/>
+                  
+                </af:showDetailItem>
                   <af:showDetailItem text="Final Group Standing" id="sdi3"
                                      rendered="#{bindings.Group1.inputValue != null}">
                     <af:inputText value="#{bindings.Group1.inputValue}"

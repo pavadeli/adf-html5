@@ -46,6 +46,12 @@
   <ViewUsage
     Name="GroupStandingView3"
     ViewObjectName="demo.adfhtml.model.GroupStandingView"/>
+  <ViewUsage
+    Name="MatchTagsView2"
+    ViewObjectName="demo.adfhtml.model.MatchTagsView"/>
+  <ViewUsage
+    Name="MatchTagCloudView1"
+    ViewObjectName="demo.adfhtml.model.MatchTagCloudView"/>
   <ViewLinkUsage
     Name="MatchResultGroupStandingViewLink"
     ViewLinkObjectName="demo.adfhtml.model.MatchResultGroupStandingViewLink"
@@ -57,5 +63,17 @@
     ViewLinkObjectName="demo.adfhtml.model.MatchResultGroupStandingViewLink"
     SrcViewUsageName="demo.adfhtml.model.WorldCupService.MatchResultsView1"
     DstViewUsageName="demo.adfhtml.model.WorldCupService.GroupStandingView3"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="TagsViewLink1"
+    ViewLinkObjectName="demo.adfhtml.model.TagsViewLink"
+    SrcViewUsageName="demo.adfhtml.model.WorldCupService.MatchResultsView1"
+    DstViewUsageName="demo.adfhtml.model.WorldCupService.MatchTagsView2"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="MatchResultMatchTagCloudViewLink1"
+    ViewLinkObjectName="demo.adfhtml.model.MatchResultMatchTagCloudViewLink"
+    SrcViewUsageName="demo.adfhtml.model.WorldCupService.MatchResultsView1"
+    DstViewUsageName="demo.adfhtml.model.WorldCupService.MatchTagCloudView1"
     Reversed="false"/>
 </AppModule>

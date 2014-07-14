@@ -61,4 +61,16 @@ public class MatchDetailsHelperBean {
     public List<MatchEvent> getMatchEvents() {
         return matchEvents;
     }
+    
+    public List<Tag> getTags() {
+        List<Tag> tags = new ArrayList<Tag>();
+        DCIteratorBinding tagiter = ADFHelper.findIterator("MatchTagCloudView1Iterator");
+        Row[] rows = tagiter.getAllRowsInRange();  
+        
+        for (Row row : rows) {  
+            tags.add(new Tag((String)row.getAttribute("Tag"), 1, (Boolean)true));            
+        } 
+        
+        return tags;
+    }
 }

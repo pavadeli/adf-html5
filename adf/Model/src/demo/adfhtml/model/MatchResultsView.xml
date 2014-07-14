@@ -326,6 +326,11 @@
     ViewLink="demo.adfhtml.model.MatchResultGroupStandingViewLink"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="MatchTagCloud"
+    ViewLink="demo.adfhtml.model.MatchResultMatchTagCloudViewLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="demo.adfhtml.model.ModelBundle"/>
