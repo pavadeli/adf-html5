@@ -120,7 +120,8 @@
   </af:panelStretchLayout>
  
   <af:popup id="p1">
-    <af:panelWindow id="pw1" title="Match Details" resize="on" modal="true">
+    <af:panelWindow id="pw1" title="Match Details" resize="on" modal="true"
+                    inlineStyle="background-color:Orange;">
       <af:region value="#{bindings.matchdetailstaskflowdefinition1.regionModel}"
                  id="r1"/>
     </af:panelWindow>

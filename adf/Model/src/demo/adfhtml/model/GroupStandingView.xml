@@ -50,6 +50,13 @@ else 1 end
 , sum( away_goals) over (partition by group1, home_team_id) goals_conceded
 from results
 )
+select s.*
+,      row_number() over (partition by group1 
+                       order by points desc
+                              , goal_difference desc
+                              , goals_scored desc
+                              ) rank_in_group
+from (
 select distinct
 tr.group1
 , t.country
@@ -60,13 +67,11 @@ tr.group1
 from team_results tr
 join
 wc_teams t
-on (tr.team_id = t.id
-)
+on (tr.team_id = t.id)
+) s
 order
-by tr.group1
-, points desc
-, goal_difference desc
-, goals_scored desc]]>
+by group1 ,
+rank_in_group]]>
   </SQLQuery>
   <ViewAttribute
     Name="Group1"
@@ -150,6 +155,20 @@ by tr.group1
     ColumnType="NUMBER"
     AliasName="GOALS_SCORED"
     Expression="GOALS_SCORED"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="RankInGroup"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="RANK_IN_GROUP"
+    Expression="RANK_IN_GROUP"
     SQLType="NUMERIC">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="22"/>
