@@ -29,7 +29,7 @@ angular.module('tagcloud', [])
               weight: true,
               weightFrom: 'data-weight',
               weightMode: 'size',
-              weightSize: 0.6,
+              weightSize: 1,
               clickToFront: 300,
               // freezeActive: true,
               // freezeDecel: true,

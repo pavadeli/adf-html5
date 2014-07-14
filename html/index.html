@@ -3,7 +3,12 @@
 <head>
 </head>
 <body>
-  <div class="guest-component: tagcloud myId1;" style="width:500px; height:500px;"></div>
+  <div id="bridge1" style="display:inline-block;">
+    <div class="guest-component: tagcloud myTagcloud;" style="width:400px; height:400px;"></div>
+  </div>
+  <div id="bridge2" style="display:inline-block;">
+    <div class="guest-component: tagcloud myTagcloud;" style="width:400px; height:400px;"></div>
+  </div>
 
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/bower-tagcanvas/tagcanvas.js"></script>
@@ -15,14 +20,27 @@
   <script src="components/integration/angularGuest.js"></script>
 
   <script>
-    // Mock host...
-    OTNBridge.registerHost(function (msg) {
-      window.alert('Message to host: ' + JSON.stringify(msg));
-    });
-    OTNBootstrapper.bootstrap();
+    // We simulate two taskflows. Each will have it's own registered host.
+    var root1 = document.getElementById('bridge1'),
+        root2 = document.getElementById('bridge2');
 
-    OTNBridge.toGuest('myId1', {
-      tags: [{"id":"tag0","text":"Tag 0","value":65},{"id":"tag1","text":"Tag 1","value":33},{"id":"tag2","text":"Tag 2","value":29},{"id":"tag3","text":"Tag 3","value":73},{"id":"tag4","text":"Tag 4","value":72},{"id":"tag5","text":"Tag 5","value":73},{"id":"tag6","text":"Tag 6","value":93},{"id":"tag7","text":"Tag 7","value":56},{"id":"tag8","text":"Tag 8","value":58},{"id":"tag9","text":"Tag 9","value":23}]
+    // Mock host 1...
+    var bridge1 = OTNBridge.createBridge(root1, function (msg) {
+      window.alert('Message to host from bridge1: ' + JSON.stringify(msg));
+    });
+    OTNBootstrapper.bootstrap(root1);
+
+    // Mock host 2...
+    var bridge2 = OTNBridge.createBridge(root2, function (msg) {
+      window.alert('Message to host from bridge2: ' + JSON.stringify(msg));
+    });
+    OTNBootstrapper.bootstrap(root2);
+
+    bridge1.toGuest('myTagcloud', {
+      tags: [{"id":"tag0","text":"Taskflow 1","value":65},{"id":"tag1","text":"Taskflow 1","value":33},{"id":"tag2","text":"Taskflow 1","value":29},{"id":"tag3","text":"Taskflow 1","value":73},{"id":"tag4","text":"Taskflow 1","value":72},{"id":"tag5","text":"Taskflow 1","value":73},{"id":"tag6","text":"Taskflow 1","value":93},{"id":"tag7","text":"Taskflow 1","value":56},{"id":"tag8","text":"Taskflow 1","value":58},{"id":"tag9","text":"Taskflow 1","value":23}]
+    });
+    bridge2.toGuest('myTagcloud', {
+      tags: [{"id":"tag0","text":"Taskflow 2","value":65}]
     });
   </script>
 

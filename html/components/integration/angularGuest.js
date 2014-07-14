@@ -10,10 +10,10 @@
           var id = attrs.guestComponent.split(' ')[1];
 
           scope.toHost = function toHost(msg) {
-            OTNBridge.toHost(id, msg);
+            OTNBridge.toHost(element[0], id, msg);
           };
 
-          OTNBridge.registerGuest(id, function (msg) {
+          OTNBridge.registerGuest(element[0], id, function (msg) {
             scope.$apply(function () {
               angular.extend(scope, msg);
             });
