@@ -82,6 +82,7 @@ public class MatchHelperBean {
         return tags;
     }
 
+
     public String getFilteringTags() {
         return filteringTags;
     }

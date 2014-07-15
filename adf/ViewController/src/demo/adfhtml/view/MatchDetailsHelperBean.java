@@ -73,4 +73,15 @@ public class MatchDetailsHelperBean {
         
         return tags;
     }
+    public List<String> getPreviouslyAssignedTags() {
+        List<String> tags = new ArrayList<String>();
+        DCIteratorBinding tagiter = ADFHelper.findIterator("UniqueTagsViewIterator");
+        Row[] rows = tagiter.getAllRowsInRange();  
+        
+        for (Row row : rows) {  
+            tags.add((String)row.getAttribute("Tag"));            
+        } 
+        
+        return tags;
+    }
 }

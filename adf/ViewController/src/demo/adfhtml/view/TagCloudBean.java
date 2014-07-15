@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.faces.component.UIComponent;
 
+import javax.faces.event.ActionEvent;
+
 import oracle.adf.model.BindingContext;
 import oracle.adf.share.logging.ADFLogger;
 import oracle.adf.view.rich.context.AdfFacesContext;
@@ -24,6 +26,15 @@ public class TagCloudBean {
         ADFLogger.createADFLogger(TagCloudBean.class);
 
     private List<Tag> tags = new ArrayList<Tag>();
+    // a list of all tags that have been assigned manually; these can be used to offer
+    // the user options to choose from in a compbo box where new tags can be specified as well
+    private List<String> previouslyAssignedTags = new ArrayList<String>();
+    
+    private String newTag;
+    
+    //indicates whether new tags can be added to the cloud/existing (manual) tags can be removed
+    private Boolean editable=false;
+    
     private String selectedTags;
 
     private OTNBridge otnBridge;
@@ -114,6 +125,14 @@ public class TagCloudBean {
         _logger.warning("Event has been published");
     }
 
+    public void addTag(ActionEvent ae) {
+        // do your thing to add the tag set in the newTag property
+        getPreviouslyAssignedTags().add(getNewTag());
+        // publish event about new tag
+        
+        _logger.warning("Event must be published for new tag "+getNewTag());
+    }
+
     public String getSelectedTags() {
         return selectedTags;
     }
@@ -124,5 +143,39 @@ public class TagCloudBean {
 
     public OTNBridge getOtnBridge() {
         return otnBridge;
+    }
+
+    public void setPreviouslyAssignedTags(List<String> previouslyAssignedTags) {
+        this.previouslyAssignedTags = previouslyAssignedTags;
+    }
+
+    public List<String> getPreviouslyAssignedTags() {
+        return previouslyAssignedTags;
+    }
+
+    public String getPreviouslyAssignedTagsAsString() {
+        String tags="";
+        if (getPreviouslyAssignedTags()!=null) {
+        for (String tag:getPreviouslyAssignedTags()) {
+            tags= tags+", "+tag;
+        }
+        }
+        return tags.substring(2);
+    }
+
+    public void setEditable(Boolean editable) {
+        this.editable = editable;
+    }
+
+    public Boolean getEditable() {
+        return editable;
+    }
+
+    public void setNewTag(String newTag) {
+        this.newTag = newTag;
+    }
+
+    public String getNewTag() {
+        return newTag;
     }
 }

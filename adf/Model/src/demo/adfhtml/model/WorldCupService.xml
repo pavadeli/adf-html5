@@ -52,6 +52,9 @@
   <ViewUsage
     Name="MatchTagCloudView1"
     ViewObjectName="demo.adfhtml.model.MatchTagCloudView"/>
+  <ViewUsage
+    Name="UniqueTagsView1"
+    ViewObjectName="demo.adfhtml.model.UniqueTagsView"/>
   <ViewLinkUsage
     Name="MatchResultGroupStandingViewLink"
     ViewLinkObjectName="demo.adfhtml.model.MatchResultGroupStandingViewLink"

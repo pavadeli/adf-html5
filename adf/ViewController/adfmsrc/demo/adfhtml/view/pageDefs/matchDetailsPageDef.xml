@@ -18,11 +18,16 @@
       <parameters>
         <parameter id="tags"
                    value="#{pageFlowScope.matchDetailsHelperBean.tags}"/>
+        <parameter id="uniqueTags"
+                   value="#{pageFlowScope.matchDetailsHelperBean.previouslyAssignedTags}"/>
+        <parameter id="editable" value="true"/>
       </parameters>
     </taskFlow>
     <iterator Binds="MatchTagCloudView1" RangeSize="25"
               DataControl="WorldCupServiceDataControl"
               id="MatchTagCloudView1Iterator"/>
+    <iterator id="UniqueTagsViewIterator" Binds="UniqueTagsView1"
+              DataControl="WorldCupServiceDataControl" RangeSize="25"/>
   </executables>
   <bindings>
     <listOfValues StaticList="false" IterBinding="MatchResultsView1Iterator"
