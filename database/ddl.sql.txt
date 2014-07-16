@@ -8,6 +8,8 @@ rem DDL statements to create tables and other database objects
 
 /
 
+create sequence wc_tag_seq start with 50; 
+/
 --------------------------------------------------------
 --  DDL for Table WC_FOOTBALL_REGIONS
 --------------------------------------------------------
