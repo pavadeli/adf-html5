@@ -64,7 +64,7 @@
          on (sp.match_id = mr.id and length(scoring_process)>= iteration + 1)
 )
 , tagged as
-(select t.tag
+(select '***'||t.tag tag
  ,      mt.match_id
  from   wc_match_tags mt
         join
@@ -179,8 +179,9 @@
   group 
   by     match_id
 )
-select substr(tag, 1, 25) tag
+select substr(replace(tag,'***',''), 1, 25) tag
 ,      m.id match_id
+,      case substr(tag,1,3) when '***'  then 'M'  else 'G' end tag_type
 from   tagged t
        join
        matches m
@@ -219,6 +220,38 @@ by     tag]]>
     <DesignTime>
       <Attr Name="_DisplaySize" Value="22"/>
     </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TagType"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="TAG_TYPE"
+    Expression="TAG_TYPE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Generated"
+    IsUpdateable="false"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Boolean"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR">
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
+    <TransientExpression><![CDATA[TagType =='G']]></TransientExpression>
+    <Dependencies>
+      <Item
+        Value="TagType"/>
+    </Dependencies>
   </ViewAttribute>
   <AttrArray Name="KeyAttributes">
     <Item Value="Tag"/>

@@ -5,7 +5,9 @@
   <af:panelStretchLayout id="psl3" topHeight="110px" styleClass="AFStretchWidth"
                          inlineStyle="background-color:Yellow;height:500.0px;"
                          bottomHeight="5px">
-    <f:facet name="bottom"/>
+    <f:facet name="bottom">
+      
+    </f:facet>
     <f:facet name="center">
       <af:panelStretchLayout id="psl1" styleClass="AFStretchWidth" 
                              inlineStyle="background-color:Gray;">
@@ -20,7 +22,8 @@
                                  inlineStyle="background-color:Silver;"/>
                     <af:gridCell marginStart="5px" width="110px" id="gc11"
                                  halign="center">
-                      <af:image id="homeFlag2"
+                    
+                    <af:image id="homeFlag2"
                                 source="/images/countryflags/#{bindings.Home.inputValue}.png"
                                 inlineStyle="width:50.0px;"/>
                     </af:gridCell>
@@ -137,7 +140,8 @@
                 </af:showDetailItem>
                   <af:showDetailItem text="Final Group Standing" id="sdi3"
                                      rendered="#{bindings.Group1.inputValue != null}">
-                    <af:inputText value="#{bindings.Group1.inputValue}"
+             
+                  <af:inputText value="#{bindings.Group1.inputValue}"
                                   label="#{bindings.Group1.hints.label}"
                                   required="#{bindings.Group1.hints.mandatory}"
                                   columns="#{bindings.Group1.hints.displayWidth}"

@@ -5,9 +5,17 @@
                binding="#{pageFlowScope.tagCloudBean.tagCloudUIComponent}"
                icon="#{pageFlowScope.tagCloudBean.initialise}"
                clientComponent="true">
+    <af:resource type="javascript">
+      function setNewTag(event) {
+          var tag = event.getSource();
+          var tagValue = tag.getProperty("tag");
+          var it1 = tag.findComponent("it1");
+          it1.setValue(tagValue);
+      }
+    </af:resource>
     <af:serverListener type="guestMsg"
                        method="#{pageFlowScope.tagCloudBean.tagcloudEvent}"/>
-    <af:panelGridLayout id="pgl2">
+    <af:panelGridLayout id="pgl2" partialTriggers="manualTagsIter:delTagCIL">
       <af:gridRow id="gr1a" height="auto"
                   rendered="#{pageFlowScope.tagCloudBean.editable}">
         <af:gridCell id="gc1a" width="100%">
@@ -21,6 +29,26 @@
                       shortDesc="Click to add new tag"
                       inlineStyle="width:15.0px;"/>
           </af:commandLink>
+          <af:iterator id="prevTagsIter"
+                       value="#{pageFlowScope.tagCloudBean.previouslyAssignedTags}"
+                       var="tag">
+            <af:outputText id="prevTag" value="#{tag}, ">
+              <af:clientAttribute name="tag" value="#{tag}"/>
+              <af:clientListener method="setNewTag" type="click"/>
+            </af:outputText>
+          </af:iterator>
+          <af:spacer id="hoi" height="10"/>
+          <af:iterator id="manualTagsIter"
+                       value="#{pageFlowScope.tagCloudBean.manualTags}"
+                       var="tag">
+            <af:commandLink text="Remove #{tag.tag}" id="delTagCIL"
+                            actionListener="#{pageFlowScope.tagCloudBean.removeTag}">
+              <af:clientAttribute name="tagValue" value="#{tag.tag}"/>
+              <af:image id="removeTagIMG" source="/images/Remove-icon.png"
+                        shortDesc="Click to remove tag #{tag.tag}"
+                        inlineStyle="width:15.0px;"/>
+            </af:commandLink>
+          </af:iterator>
         </af:gridCell>
       </af:gridRow>
       <af:gridRow id="gr1b" height="auto"

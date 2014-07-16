@@ -28,6 +28,9 @@
               id="MatchTagCloudView1Iterator"/>
     <iterator id="UniqueTagsViewIterator" Binds="UniqueTagsView1"
               DataControl="WorldCupServiceDataControl" RangeSize="25"/>
+    <iterator Binds="MatchTagsView2" RangeSize="10"
+              DataControl="WorldCupServiceDataControl"
+              id="MatchTagsView2Iterator"/>
   </executables>
   <bindings>
     <listOfValues StaticList="false" IterBinding="MatchResultsView1Iterator"
@@ -123,8 +126,61 @@
         <AttrNames>
           <Item Value="Tag"/>
           <Item Value="MatchId"/>
+          <Item Value="Generated"/>
         </AttrNames>
       </nodeDefinition>
     </tree>
+    <table IterBinding="MatchTagsView2Iterator" id="MatchTagsView2">
+      <AttrNames>
+        <Item Value="MatchId"/>
+        <Item Value="TagId"/>
+      </AttrNames>
+    </table>
+
+    <methodAction id="handleTagAddedEvent" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="handleEvent"
+                  IsViewObjectMethod="false" DataControl="TagAddedEventConsumer"
+                  InstanceName="TagAddedEventConsumer.dataProvider">
+      <NamedData NDName="payload" NDType="java.lang.Object"
+                 NDValue="${payLoad}"/>
+    </methodAction>
+    <methodAction id="addTagToMatch" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="addTagToMatch"
+                  IsViewObjectMethod="false"
+                  DataControl="WorldCupServiceDataControl"
+                  InstanceName="WorldCupServiceDataControl.dataProvider">
+      <NamedData NDName="tag" NDType="java.lang.String"/>
+      <NamedData NDName="matchId" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+    <action id="Commit" DataControl="WorldCupServiceDataControl"
+            RequiresUpdateModel="true" Action="commitTransaction"/>
+    <methodAction id="handleTagRemovedEvent" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="handleEvent"
+                  IsViewObjectMethod="false"
+                  DataControl="TagRemovedEventConsumer"
+                  InstanceName="TagRemovedEventConsumer.dataProvider">
+      <NamedData NDName="payload" NDType="java.lang.Object"
+                 NDValue="${payLoad}"/>
+    </methodAction>
+    <methodAction id="removeTagfromMatch" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="removeTagfromMatch"
+                  IsViewObjectMethod="false"
+                  DataControl="WorldCupServiceDataControl"
+                  InstanceName="WorldCupServiceDataControl.dataProvider">
+      <NamedData NDName="tag" NDType="java.lang.String"/>
+      <NamedData NDName="matchId" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
   </bindings>
+  <eventMap xmlns="http://xmlns.oracle.com/adfm/contextualEvent">
+    <event name="TagAdded">
+      <producer region="*">
+        <consumer handler="handleTagAddedEvent"/>
+      </producer>
+    </event>
+    <event name="TagRemoved">
+      <producer region="*">
+        <consumer handler="handleTagRemovedEvent"/>
+      </producer>
+    </event>
+  </eventMap>
 </pageDefinition>

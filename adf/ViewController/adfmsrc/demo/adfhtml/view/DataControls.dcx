@@ -53,4 +53,38 @@
                        xmlns="http://xmlns.oracle.com/adfm/adapter/bean"/>
     </Source>
   </AdapterDataControl>
+  <AdapterDataControl id="TagAddedEventConsumer"
+                      FactoryClass="oracle.adf.model.adapter.bean.BeanDCFactoryImpl"
+                      ImplDef="oracle.adf.model.adapter.bean.BeanDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="demo.adfhtml.view.events.TagAddedEventConsumer"
+                      BeanClass="demo.adfhtml.view.events.TagAddedEventConsumer"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="demo.adfhtml.view.events.TagAddedEventConsumer"/>
+    </CreatableTypes>
+    <Source>
+      <bean-definition BeanClass="demo.adfhtml.view.events.TagAddedEventConsumer"
+                       xmlns="http://xmlns.oracle.com/adfm/adapter/bean"/>
+    </Source>
+  </AdapterDataControl>
+  <AdapterDataControl id="TagRemovedEventConsumer"
+                      FactoryClass="oracle.adf.model.adapter.bean.BeanDCFactoryImpl"
+                      ImplDef="oracle.adf.model.adapter.bean.BeanDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="demo.adfhtml.view.events.TagRemovedEventConsumer"
+                      BeanClass="demo.adfhtml.view.events.TagRemovedEventConsumer"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="demo.adfhtml.view.events.TagRemovedEventConsumer"/>
+    </CreatableTypes>
+    <Source>
+      <bean-definition BeanClass="demo.adfhtml.view.events.TagRemovedEventConsumer"
+                       xmlns="http://xmlns.oracle.com/adfm/adapter/bean"/>
+    </Source>
+  </AdapterDataControl>
 </DataControlConfigs>

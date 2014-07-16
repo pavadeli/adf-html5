@@ -28,6 +28,7 @@
     <DesignTime>
       <Attr Name="_DisplaySize" Value="5"/>
     </DesignTime>
+    <TransientExpression><![CDATA[(new oracle.jbo.server.SequenceImpl("WC_TAG_SEQ",adf.object.getDBTransaction())).getSequenceNumber()]]></TransientExpression>
   </Attribute>
   <Attribute
     Name="Tag"
@@ -41,14 +42,6 @@
       <Attr Name="_DisplaySize" Value="200"/>
     </DesignTime>
   </Attribute>
-  <Attribute
-    Name="RowID"
-    IsUpdateable="false"
-    ColumnName="ROWID"
-    SQLType="ROWID"
-    Type="oracle.jbo.domain.RowID"
-    ColumnType="ROWID"
-    TableName="WC_TAGS"/>
   <AccessorAttribute
     Name="MatchTags"
     Association="demo.adfhtml.model.TagUsage"

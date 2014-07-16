@@ -10,6 +10,9 @@ import javax.faces.event.ActionEvent;
 
 import oracle.adf.model.BindingContext;
 import oracle.adf.share.logging.ADFLogger;
+import oracle.adf.view.rich.component.rich.nav.RichCommandButton;
+import oracle.adf.view.rich.component.rich.nav.RichCommandImageLink;
+import oracle.adf.view.rich.component.rich.nav.RichCommandLink;
 import oracle.adf.view.rich.context.AdfFacesContext;
 import oracle.adf.view.rich.render.ClientEvent;
 import oracle.adf.view.rich.util.ResetUtils;
@@ -109,6 +112,18 @@ public class TagCloudBean {
         return tags;
     }
 
+
+    public List<Tag> getManualTags() {
+        List<Tag> mt = new ArrayList<Tag>();
+        for (Tag tag:getTags()) {
+            if (!tag.getGenerated()) {
+                mt.add(tag);
+            }
+        }
+        return mt;
+    }
+
+
     public void setSelectedTags(String selectedTags) {
         this.selectedTags = selectedTags;
 
@@ -127,10 +142,54 @@ public class TagCloudBean {
 
     public void addTag(ActionEvent ae) {
         // do your thing to add the tag set in the newTag property
-        getPreviouslyAssignedTags().add(getNewTag());
+        getTags().add(new Tag(getNewTag(),1,false));
+        if (!previouslyAssignedTags.contains(newTag)){
+            getPreviouslyAssignedTags().add(getNewTag());
+        }
         // publish event about new tag
         
         _logger.warning("Event must be published for new tag "+getNewTag());
+        BindingContext bindingContext = BindingContext.getCurrent();
+        BindingContainer bindingContainer =
+            bindingContext.getCurrentBindingsEntry();
+        OperationBinding binding =
+            bindingContainer.getOperationBinding("publishTagAddedEvent");
+        _logger.warning(" operation binding is found " + binding);
+        binding.getParamsMap().put("payload", getNewTag());
+        binding.execute();
+        _logger.warning("Event has been published with payload "+getNewTag());
+        setNewTag("");
+    }
+
+
+    public void removeTag(ActionEvent ae) {
+        _logger.warning("Tag to be removed ");
+            RichCommandLink rcil = (RichCommandLink)ae.getSource();
+            String tagToRemove = (String)rcil.getAttributes().get("tagValue");
+                    // do your thing to add the tag set in the newTag property
+                    _logger.warning("Tag to be removed = "+tagToRemove);
+        // remove tag from getTags()
+            for (Tag tag:getTags()) {
+                if (tag.getTag().equalsIgnoreCase(tagToRemove)) {
+                    getTags().remove(tag);
+                    break;
+                }
+            }
+  
+         // publish event about tag removal
+        
+        _logger.warning("Event must be published for removed tag "+tagToRemove);
+        BindingContext bindingContext = BindingContext.getCurrent();
+        BindingContainer bindingContainer =
+            bindingContext.getCurrentBindingsEntry();
+        OperationBinding binding =
+            bindingContainer.getOperationBinding("publishTagRemovedEvent");
+
+        _logger.warning(" operation binding is found " + binding);
+        binding.getParamsMap().put("payload", tagToRemove);
+        binding.execute();
+        _logger.warning("Event has been published with payload "+tagToRemove);
+        
     }
 
     public String getSelectedTags() {
@@ -150,7 +209,12 @@ public class TagCloudBean {
     }
 
     public List<String> getPreviouslyAssignedTags() {
-        return previouslyAssignedTags;
+        List<String> clonePrevAssignedTags = new ArrayList<String>();
+        clonePrevAssignedTags.addAll(previouslyAssignedTags);
+        for (Tag tag: getTags()) {
+            clonePrevAssignedTags.remove(tag.getTag());
+        }
+        return clonePrevAssignedTags;
     }
 
     public String getPreviouslyAssignedTagsAsString() {
@@ -160,7 +224,7 @@ public class TagCloudBean {
             tags= tags+", "+tag;
         }
         }
-        return tags.substring(2);
+        return tags.length()>1?tags.substring(2):"";
     }
 
     public void setEditable(Boolean editable) {

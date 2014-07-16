@@ -31,7 +31,7 @@
    by     regexp_substr(:b_selected_tags, '[^,]+', 1, level) is not null
  )   
 , tag_filter as
- ( select cast( collect(substr(filter_tag,1,20) ) as string_table) selected_tags
+ ( select cast( collect(substr(filter_tag,1,30) ) as string_table) selected_tags
    from   filter_tags
  )
  , matches as

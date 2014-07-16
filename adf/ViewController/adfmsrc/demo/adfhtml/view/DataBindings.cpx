@@ -31,6 +31,10 @@
           path="demo.adfhtml.view.pageDefs.tagcloudPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
+    <dc id="TagRemovedEventConsumer"
+        path="demo.adfhtml.view.TagRemovedEventConsumer"/>
+    <dc id="TagAddedEventConsumer"
+        path="demo.adfhtml.view.TagAddedEventConsumer"/>
     <dc id="AvailableTagsCollectionChangedEventConsumer"
         path="demo.adfhtml.view.AvailableTagsCollectionChangedEventConsumer"/>
     <dc id="EventConsumer" path="demo.adfhtml.view.EventConsumer"/>

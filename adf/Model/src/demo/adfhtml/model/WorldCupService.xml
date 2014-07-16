@@ -6,9 +6,13 @@
   Name="WorldCupService"
   Version="11.1.1.64.93"
   InheritPersonalization="true"
-  ClearCacheOnRollback="true">
+  ClearCacheOnRollback="true"
+  ComponentClass="demo.adfhtml.model.WorldCupServiceImpl"
+  ComponentInterface="demo.adfhtml.model.common.WorldCupService"
+  ClientProxyName="demo.adfhtml.model.client.WorldCupServiceClient">
   <DesignTime>
     <Attr Name="_deployType" Value="0"/>
+    <Attr Name="_isCodegen" Value="true"/>
   </DesignTime>
   <ViewUsage
     Name="FootballRegionsView1"
@@ -79,4 +83,28 @@
     SrcViewUsageName="demo.adfhtml.model.WorldCupService.MatchResultsView1"
     DstViewUsageName="demo.adfhtml.model.WorldCupService.MatchTagCloudView1"
     Reversed="false"/>
+  <ClientInterface>
+    <Method
+      Name="addTagToMatch">
+      <Return
+        Type="void"/>
+      <Parameter
+        Name="tag"
+        Type="java.lang.String"/>
+      <Parameter
+        Name="matchId"
+        Type="oracle.jbo.domain.Number"/>
+    </Method>
+    <Method
+      Name="removeTagfromMatch">
+      <Return
+        Type="void"/>
+      <Parameter
+        Name="tag"
+        Type="java.lang.String"/>
+      <Parameter
+        Name="matchId"
+        Type="oracle.jbo.domain.Number"/>
+    </Method>
+  </ClientInterface>
 </AppModule>

@@ -5,10 +5,17 @@ import java.util.List;
 
 import oracle.adf.model.binding.DCIteratorBinding;
 
+
+import oracle.adf.share.logging.ADFLogger;
+
+import oracle.binding.OperationBinding;
+
 import oracle.jbo.Row;
+import oracle.jbo.RowSetIterator;
 import oracle.jbo.ViewObject;
 
 public class MatchDetailsHelperBean {
+    ADFLogger _logger = ADFLogger.createADFLogger(this.getClass());
     public MatchDetailsHelperBean() {
         super();
         
@@ -68,7 +75,7 @@ public class MatchDetailsHelperBean {
         Row[] rows = tagiter.getAllRowsInRange();  
         
         for (Row row : rows) {  
-            tags.add(new Tag((String)row.getAttribute("Tag"), 1, (Boolean)true));            
+            tags.add(new Tag((String)row.getAttribute("Tag"), 1, (Boolean)row.getAttribute("Generated")));            
         } 
         
         return tags;
@@ -83,5 +90,48 @@ public class MatchDetailsHelperBean {
         } 
         
         return tags;
+    }
+
+    public void addNewTag(String newTag) {
+        _logger.warning("add new Tag ");
+
+        DCIteratorBinding miter = ADFHelper.findIterator("MatchResultsView1Iterator");
+        Row matchRow = miter.getCurrentRow();
+        Object matchId = matchRow.getAttribute("Id");
+
+        // find operation binding to invoke method to add tag to match
+        OperationBinding addTagToMatch = ADFHelper.getBindingContainer().getOperationBinding("addTagToMatch");
+        addTagToMatch.getParamsMap().put("matchId", matchId);
+        addTagToMatch.getParamsMap().put("tag", newTag);
+        Object result1 = addTagToMatch.execute();
+        _logger.warning("After commit of new match tag");
+
+
+        // find operation binding to commit as well
+        OperationBinding operationBinding = ADFHelper.getBindingContainer().getOperationBinding("Commit");
+        Object result = operationBinding.execute();
+        _logger.warning("After commit of new match tag");
+        
+    }
+
+    public void removeTag(String removedTag) {
+        _logger.warning("MDHB remove  Tag "+removedTag);
+
+        DCIteratorBinding miter = ADFHelper.findIterator("MatchResultsView1Iterator");
+        Row matchRow = miter.getCurrentRow();
+        Object matchId = matchRow.getAttribute("Id");
+
+        // find operation binding to invoke method to remove tag to match
+        OperationBinding removeTagFromMatch = ADFHelper.getBindingContainer().getOperationBinding("removeTagfromMatch");
+        removeTagFromMatch.getParamsMap().put("matchId", matchId);
+        removeTagFromMatch.getParamsMap().put("tag", removedTag);
+        Object result1 = removeTagFromMatch.execute();
+        _logger.warning("After commit of remove match tag");
+
+
+        // find operation binding to commit as well
+        OperationBinding operationBinding = ADFHelper.getBindingContainer().getOperationBinding("Commit");
+        Object result = operationBinding.execute();
+        _logger.warning("After commit of removed match tag");
     }
 }

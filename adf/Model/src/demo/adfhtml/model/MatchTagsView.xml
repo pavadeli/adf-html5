@@ -17,6 +17,14 @@
   <DesignTime>
     <Attr Name="_codeGenFlag2" Value="Access|VarAccess"/>
   </DesignTime>
+  <Variable
+    Name="b_matchId"
+    Kind="viewcriteria"
+    Type="oracle.jbo.domain.Number"/>
+  <Variable
+    Name="b_tagId"
+    Kind="viewcriteria"
+    Type="oracle.jbo.domain.Number"/>
   <EntityUsage
     Name="MatchTag"
     Entity="demo.adfhtml.model.MatchTag"/>
@@ -39,6 +47,50 @@
     EntityAttrName="RowID"
     EntityUsage="MatchTag"
     AliasName="ROWID"/>
+  <ViewCriteria
+    Name="FindByMatchAndTag"
+    ViewObjectName="demo.adfhtml.model.MatchTagsView"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow1"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="TagId"
+        ViewAttribute="TagId"
+        Operator="="
+        Conjunction="AND"
+        Value=":b_tagId"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="MatchId"
+        ViewAttribute="MatchId"
+        Operator="="
+        Conjunction="AND"
+        Value=":b_matchId"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
   <ViewLinkAccessor
     Name="Match"
     ViewLink="demo.adfhtml.model.TagsViewLink"
