@@ -41,7 +41,7 @@
           <af:iterator id="manualTagsIter"
                        value="#{pageFlowScope.tagCloudBean.manualTags}"
                        var="tag">
-            <af:commandLink text="Remove #{tag.tag}" id="delTagCIL"
+            <af:commandLink text="#{tag.tag} " id="delTagCIL"
                             actionListener="#{pageFlowScope.tagCloudBean.removeTag}">
               <af:clientAttribute name="tagValue" value="#{tag.tag}"/>
               <af:image id="removeTagIMG" source="/images/Remove-icon.png"

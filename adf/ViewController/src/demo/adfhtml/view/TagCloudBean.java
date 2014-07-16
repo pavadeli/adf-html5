@@ -32,12 +32,12 @@ public class TagCloudBean {
     // a list of all tags that have been assigned manually; these can be used to offer
     // the user options to choose from in a compbo box where new tags can be specified as well
     private List<String> previouslyAssignedTags = new ArrayList<String>();
-    
+
     private String newTag;
-    
+
     //indicates whether new tags can be added to the cloud/existing (manual) tags can be removed
-    private Boolean editable=false;
-    
+    private Boolean editable = false;
+
     private String selectedTags;
 
     private OTNBridge otnBridge;
@@ -115,7 +115,7 @@ public class TagCloudBean {
 
     public List<Tag> getManualTags() {
         List<Tag> mt = new ArrayList<Tag>();
-        for (Tag tag:getTags()) {
+        for (Tag tag : getTags()) {
             if (!tag.getGenerated()) {
                 mt.add(tag);
             }
@@ -142,13 +142,13 @@ public class TagCloudBean {
 
     public void addTag(ActionEvent ae) {
         // do your thing to add the tag set in the newTag property
-        getTags().add(new Tag(getNewTag(),1,false));
-        if (!previouslyAssignedTags.contains(newTag)){
+        getTags().add(new Tag(getNewTag(), 1, false));
+        if (!previouslyAssignedTags.contains(newTag)) {
             getPreviouslyAssignedTags().add(getNewTag());
         }
         // publish event about new tag
-        
-        _logger.warning("Event must be published for new tag "+getNewTag());
+
+        _logger.warning("Event must be published for new tag " + getNewTag());
         BindingContext bindingContext = BindingContext.getCurrent();
         BindingContainer bindingContainer =
             bindingContext.getCurrentBindingsEntry();
@@ -157,28 +157,30 @@ public class TagCloudBean {
         _logger.warning(" operation binding is found " + binding);
         binding.getParamsMap().put("payload", getNewTag());
         binding.execute();
-        _logger.warning("Event has been published with payload "+getNewTag());
+        _logger.warning("Event has been published with payload " +
+                        getNewTag());
         setNewTag("");
     }
 
 
     public void removeTag(ActionEvent ae) {
         _logger.warning("Tag to be removed ");
-            RichCommandLink rcil = (RichCommandLink)ae.getSource();
-            String tagToRemove = (String)rcil.getAttributes().get("tagValue");
-                    // do your thing to add the tag set in the newTag property
-                    _logger.warning("Tag to be removed = "+tagToRemove);
+        RichCommandLink rcil = (RichCommandLink)ae.getSource();
+        String tagToRemove = (String)rcil.getAttributes().get("tagValue");
+        // do your thing to add the tag set in the newTag property
+        _logger.warning("Tag to be removed = " + tagToRemove);
         // remove tag from getTags()
-            for (Tag tag:getTags()) {
-                if (tag.getTag().equalsIgnoreCase(tagToRemove)) {
-                    getTags().remove(tag);
-                    break;
-                }
+        for (Tag tag : getTags()) {
+            if (tag.getTag().equalsIgnoreCase(tagToRemove)) {
+                getTags().remove(tag);
+                break;
             }
-  
-         // publish event about tag removal
-        
-        _logger.warning("Event must be published for removed tag "+tagToRemove);
+        }
+
+        // publish event about tag removal
+
+        _logger.warning("Event must be published for removed tag " +
+                        tagToRemove);
         BindingContext bindingContext = BindingContext.getCurrent();
         BindingContainer bindingContainer =
             bindingContext.getCurrentBindingsEntry();
@@ -188,8 +190,9 @@ public class TagCloudBean {
         _logger.warning(" operation binding is found " + binding);
         binding.getParamsMap().put("payload", tagToRemove);
         binding.execute();
-        _logger.warning("Event has been published with payload "+tagToRemove);
-        
+        _logger.warning("Event has been published with payload " +
+                        tagToRemove);
+
     }
 
     public String getSelectedTags() {
@@ -210,21 +213,24 @@ public class TagCloudBean {
 
     public List<String> getPreviouslyAssignedTags() {
         List<String> clonePrevAssignedTags = new ArrayList<String>();
-        clonePrevAssignedTags.addAll(previouslyAssignedTags);
-        for (Tag tag: getTags()) {
-            clonePrevAssignedTags.remove(tag.getTag());
+        if (previouslyAssignedTags != null) {
+            clonePrevAssignedTags.addAll(previouslyAssignedTags);
+
+            for (Tag tag : getTags()) {
+                clonePrevAssignedTags.remove(tag.getTag());
+            }
         }
         return clonePrevAssignedTags;
     }
 
     public String getPreviouslyAssignedTagsAsString() {
-        String tags="";
-        if (getPreviouslyAssignedTags()!=null) {
-        for (String tag:getPreviouslyAssignedTags()) {
-            tags= tags+", "+tag;
+        String tags = "";
+        if (getPreviouslyAssignedTags() != null) {
+            for (String tag : getPreviouslyAssignedTags()) {
+                tags = tags + ", " + tag;
+            }
         }
-        }
-        return tags.length()>1?tags.substring(2):"";
+        return tags.length() > 1 ? tags.substring(2) : "";
     }
 
     public void setEditable(Boolean editable) {
