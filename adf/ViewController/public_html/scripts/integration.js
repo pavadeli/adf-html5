@@ -64,9 +64,7 @@
 
   window.OTNBridge = {
     // Returns a bridge that can be used to send messages to guests.
-    createBridge: function createBridge(element, hostCallback) {
-      return initBridge(element, hostCallback);
-    },
+    createBridge: initBridge,
 
     // Can be used by guests to send a message to the appropriate host.
     toHost: function toHost(element, guestId, message) {
@@ -167,8 +165,8 @@
 
 function bootstrapGuestModules(clientId) {
   var element = document.getElementById(clientId);
-
-  element.OTNBridge = OTNBridge.createBridge(element, function sendMessageToHost(msg) {
+  
+  element.OTNBridge = element.OTNBridge || OTNBridge.createBridge(element, function sendMessageToHost(msg) {
     var source = AdfPage.PAGE.findComponentByAbsoluteId(clientId);
     AdfCustomEvent.queue(source, 'guestMsg', msg);
   });

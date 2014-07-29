@@ -19,17 +19,26 @@ public class OTNBridge {
     }
 
     public String getInitialiseBridge() {
-        ADFHelper.sendJavascript("bootstrapGuestModules('" + getClientId() +
-                                 "');");
+        String clientId = getClientId();
+        if (clientId != null) {
+            ADFHelper.sendJavascript("bootstrapGuestModules('" + clientId +
+                                     "');");
+        }
         return null;
     }
 
     private String getClientId() {
-        return getRoot().getClientId(FacesContext.getCurrentInstance());
+        UIComponent root = getRoot();
+        return root == null ? null :
+               root.getClientId(FacesContext.getCurrentInstance());
     }
 
     public void toGuest(String guestId, String message) {
-        ADFHelper.sendJavascript("sendMessageToGuest('" + getClientId() +
-                                 "', '" + guestId + "', " + message + ");");
+        String clientId = getClientId();
+        if (clientId != null) {
+            ADFHelper.sendJavascript("sendMessageToGuest('" + clientId +
+                                     "', '" + guestId + "', " + message +
+                                     ");");
+        }
     }
 }

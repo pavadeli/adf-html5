@@ -3,7 +3,7 @@
 function bootstrapGuestModules(clientId) {
   var element = document.getElementById(clientId);
   
-  element.OTNBridge = OTNBridge.createBridge(element, function sendMessageToHost(msg) {
+  element.OTNBridge = element.OTNBridge || OTNBridge.createBridge(element, function sendMessageToHost(msg) {
     var source = AdfPage.PAGE.findComponentByAbsoluteId(clientId);
     AdfCustomEvent.queue(source, 'guestMsg', msg);
   });
