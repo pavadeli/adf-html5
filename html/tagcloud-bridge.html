@@ -4,6 +4,7 @@
   <title>Bridge example</title>
 </head>
 <body>
+  <!-- Here we simulate two regions with the same taskflow. As you can see the two divs are equals except for the id. -->
   <div id="bridge1" style="display:inline-block;">
     <div class="guest-component: tagcloud myTagcloud;" style="width:400px; height:400px;"></div>
   </div>
@@ -17,6 +18,7 @@
 
   <script src="components/otnbridge/otnbridge.js"></script>
   <script src="components/otnbootstrapper/otnbootstrapper.js"></script>
+  <!-- adfHost.js is commented out, we mock our host below. -->
   <!--<script src="components/integration/adfHost.js"></script>-->
   <script src="components/integration/angularGuest.js"></script>
 
@@ -26,9 +28,12 @@
         root2 = document.getElementById('bridge2');
 
     // Mock host 1...
+    // We create a bridge for the subtree below element [root1]. This bridge will be used for communication with the
+    // guests in this subtree.
     var bridge1 = OTNBridge.createBridge(root1, function (msg) {
       window.alert('Message to host from bridge1: ' + JSON.stringify(msg));
     });
+    // The following statement bootstraps all available guests in the subtree below [root1].
     OTNBootstrapper.bootstrap(root1);
 
     // Mock host 2...
@@ -37,6 +42,7 @@
     });
     OTNBootstrapper.bootstrap(root2);
 
+    // The tagcloud guest accepts a 'tags' command to set the tags.
     bridge1.toGuest('myTagcloud', {
       tags: [{"id":"tag0","text":"Taskflow 1","value":65},{"id":"tag1","text":"Taskflow 1","value":33},{"id":"tag2","text":"Taskflow 1","value":29},{"id":"tag3","text":"Taskflow 1","value":73},{"id":"tag4","text":"Taskflow 1","value":72},{"id":"tag5","text":"Taskflow 1","value":73},{"id":"tag6","text":"Taskflow 1","value":93},{"id":"tag7","text":"Taskflow 1","value":56},{"id":"tag8","text":"Taskflow 1","value":58},{"id":"tag9","text":"Taskflow 1","value":23}]
     });

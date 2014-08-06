@@ -1,3 +1,8 @@
+'use strict';
+
+/*
+ * This is the AngularJS module that enables the use of the <tag-cloud> tag. Explaining AngularJS is beyond the scope of this article.
+ */
 angular.module('tagcloud', [])
 .constant('uniqueCanvasId', {
   current: 0,
