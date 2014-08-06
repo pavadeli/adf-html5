@@ -18,7 +18,7 @@ angular.module('tagcloud', [])
           started = false,
           starting = false;
 
-      scope.$watchCollection('tags', function () {
+      scope.$watch('tags', function () {
         if (starting && !started) return;
 
         if (!started) {
@@ -47,7 +47,7 @@ angular.module('tagcloud', [])
           });
 
         }
-      });
+      }, true);
 
       var canvas = element.find('canvas');
       canvas.css('width', '100%').css('height', '100%');
