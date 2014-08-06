@@ -25,11 +25,12 @@
 
   <!-- Normally you would put this in a separate file of course, just for demo it is inlined... -->
   <script>
+    // Our myApp AngularJS module depends on the "tagcloud" module. This enables the <tag-cloud> tag.
     angular.module('myApp', ['tagcloud'])
-      .controller('myController', function ($scope, $timeout, $window, $interval) {
+      .controller('myController', function ($scope, $timeout, $interval) {
 
-        // Tags probably loaded from somewhere else, we start off with one tag named "Loading..."...
-        $scope.tags = [{text: 'Loading...', value: 50}];
+        // Tags would probably be loaded from somewhere else, we start off with a few "Loading..." tags...
+        $scope.tags = [{text: 'Loading...', value: 40}, {text: 'Please'}, {text: 'wait'}, {text: 'a'}, {text: 'few'}, {text: 'seconds'}];
 
         // We simulate that the tags were loaded after 2 seconds
         $timeout(angular.noop, 2000)
