@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+  <title>HTML5 example</title>
+</head>
+<body ng-app="myApp">
+
+  <!-- HTML (view) belonging to the myController controller: -->
+  <div style="height: 300px;" ng-controller="myController">
+
+    <!-- To enable/disable "livereloading" -->
+    <label><input type="checkbox" ng-model="liveReloading">Live reloading</label>
+
+    <!-- The tagcloud, couldn't be simpler -->
+    <tag-cloud tags="tags" tag-clicked="tagClicked(tag)"></tag-cloud>
+
+    <!-- Our "log" to show which tags we clicked on. -->
+    <pre>{{log}}</pre>
+
+  </div>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/bower-tagcanvas/tagcanvas.js"></script>
+  <script src="components/tagcloud/tagcloud.js"></script>
+
+  <!-- Normally you would put this in a separate file of course, just for demo it is inlined... -->
+  <script>
+    // Our myApp AngularJS module depends on the "tagcloud" module. This enables the <tag-cloud> tag.
+    angular.module('myApp', ['tagcloud'])
+      .controller('myController', function ($scope, $timeout, $interval) {
+
+        // Tags would probably be loaded from somewhere else, we start off with a few "Loading..." tags...
+        $scope.tags = [{text: 'Loading...', value: 40}, {text: 'Please'}, {text: 'wait'}, {text: 'a'}, {text: 'few'}, {text: 'seconds'}];
+
+        // We simulate that the tags were loaded after 2 seconds
+        $timeout(angular.noop, 2000)
+          .then(function () {
+            // All tags are loaded, update the tags array.
+            $scope.tags = [
+              { text: 'Fake link 1',  value: 35 },
+              { text: 'Fake link 2',  value: 46 },
+              { text: 'Fake link 3',  value: 23 },
+              { text: 'Samsung',  value: 40 },
+              { text: 'Apple',  value: 20 },
+              { text: 'Oracle      ',  value: 44 },
+              { text: 'Google',       value: 60 },
+              { text: 'Yahoo',        value: 50 },
+              { text: 'Microsoft',    value: 40 },
+              { text: 'BBC',          value: 30 }
+            ];
+
+            // We also install the "livereloading" interval here...
+            $interval(function () {
+              if ($scope.liveReloading) {
+                angular.forEach($scope.tags, function (tag) {
+                  tag.value = Math.round((Math.random() / 10 + 0.95) * tag.value);
+                });
+              }
+            }, 100);
+          });
+
+        // When you click a tag we show the text in the "log" below the tagcloud.
+        $scope.log = '';
+        $scope.tagClicked = function (tag) {
+          $scope.log += 'You clicked tag: ' + tag.text + '\n';
+        }
+      });
+  </script>
+
+</body>
+</html>
