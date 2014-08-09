@@ -228,6 +228,25 @@ function inspectStyles(guestId, clientId, elementsToInspect) {
   sendMessageToGuest(clientId, guestId, jsonTags);   
 }
 
+function extractTagsForResourceBundleEntries( guestId, clientId ) {
+  var jsonTags = {tags : []};
+  //find element with id dictionary
+  var dictionaryComponent = AdfPage.PAGE.findComponentByAbsoluteId(clientId).findComponent("dictionary");
+    
+  // extract client attribute dictionary, which is a JSON map with properties equal to the keys for the resources we are interested in
+  var dictionaryContents = dictionaryComponent.getProperty("dictionary");
+  // to parse JSON we have to use double quotes but clientAttribute values we have to use single quotes
+  // that is why the next line replace all single quotes with double quotes
+  var dictionaryContents = dictionaryContents.replace(/'/g, '"')
+  var dictionary =  JSON.parse(dictionaryContents);
+
+  // create a tag for each these resources.
+  for(var key in dictionary) { 
+    jsonTags.tags.push({id: key, text: key + ' = ' + dictionary[key], value: 70});
+  }//for key in dictionary 
+  sendMessageToGuest(clientId, guestId, jsonTags);   
+}//extractTagsForResourceBundleEntries
+
 // found on http://stackoverflow.com/questions/6338217/get-a-css-value-with-javascript
 function getStyle(el, styleProp) {
   var value, defaultView = (el.ownerDocument || document).defaultView;

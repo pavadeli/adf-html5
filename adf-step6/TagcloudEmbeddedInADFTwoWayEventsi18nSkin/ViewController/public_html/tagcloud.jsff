@@ -28,9 +28,20 @@
                that the tagcloud component can retrieve. 
                -->
           <af:showDetailHeader text="showDetailHeader 1" disclosed="true"
-                               id="detailHeader" visible="false" />
+                               id="detailHeader" visible="false"/>
           <af:commandButton text="commandButton 1" id="button" visible="false"
                             inlineStyle="font-style:italic; text-decoration:underline;"/>
+          <af:inputText id="dictionary" value="none" visible="false">
+            <af:clientAttribute name="dictionary" value="{ 'MAIN_PAGE_TITLE':  '#{bnd.MAIN_PAGE_TITLE}'
+, 'WED':  '#{bnd.WED}'
+, 'WOMAN':  '#{bnd.WOMAN}'
+, 'BLUE':  '#{bnd.BLUE}' 
+,'MSG': '#{bnd.TAG_IS_CLICKED}'
+,'CAPITAL': '#{bnd.CAPITAL}'
+,'FIFA national team world ranking': '#{bnd.FIFA_WORLD_RANKING}'
+
+}"/>
+          </af:inputText>
         </af:gridCell>
       </af:gridRow>
     </af:panelGridLayout>

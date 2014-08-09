@@ -71,7 +71,14 @@ public class TagCloudBean {
 
     public String getInitialise() {
         getOtnBridge().getInitialiseBridge();
+        // these two lines cannot both be enabled
+        // this line will make all skin based styles displayed in the tag cloud
         instructClientToInspectStylesAndNotifyTagCloud();
+        
+        //this line will cause all resource bundle entries to be displayed in the tag cloud
+        //instructClientToRetrieveResourceBundleEntries();
+        
+        
         // temporarily switched off the regular tag loading, in order to show the effect from the JavaScript routine
         // updateTags();
         return null;
@@ -91,6 +98,13 @@ public class TagCloudBean {
         ADFHelper.sendJavascript("inspectStyles( '" +guestId + "','" 
                                  + otnBridge.getClientId() +
                                  "',"+detailHeader+");");
+    }
+
+
+    public void instructClientToRetrieveResourceBundleEntries() {
+        String guestId = "tc1";
+        ADFHelper.sendJavascript("extractTagsForResourceBundleEntries( '" +guestId + "','" 
+                                 + otnBridge.getClientId()+"');");
     }
 
 
