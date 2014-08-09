@@ -212,24 +212,20 @@ function sendMessageToGuest(clientId, guestId, message) {
 
 }(OTNBridge, OTNBootstrapper));
 
-function inspectStyles(elementId, detailElementType,guestId, clientId, elementsToInspect) {
+function inspectStyles(guestId, clientId, elementsToInspect) {
   var jsonTags = {tags : []};
-
   for (var e=0; e<elementsToInspect.elements.length; e++) {
-    var element = elementsToInspect.elements[e];
-  
+    var element = elementsToInspect.elements[e]; 
     var el = document.getElementById(element.clientId);
     if (element.detailElementType) {
        el = el.getElementsByTagName(element.detailType)[0]
     }
-//    var styles = ["font-family","background-color","font-size","color","margin-left","font-weight","background-image"];
     var styles = element.stylesToRetrieve;
-
     for(var i=0; i<styles.length; i++) {
       jsonTags.tags.push({id: styles[i], text: styles[i] + ' : ' + getStyle(el,styles[i]), value: 40});
     }
- }//for elementsToInspect
- sendMessageToGuest(clientId, guestId, jsonTags);   
+  }//for elementsToInspect
+  sendMessageToGuest(clientId, guestId, jsonTags);   
 }
 
 // found on http://stackoverflow.com/questions/6338217/get-a-css-value-with-javascript

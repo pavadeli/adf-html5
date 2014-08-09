@@ -23,9 +23,12 @@
                         readOnly="true"/>
         </af:gridCell>
         <af:gridCell id="gc5" halign="stretch" width="100%" valign="top">
+          <!-- these components are not visible to the end user.
+               their purpose is to be the source of Skin derived CSS style properties
+               that the tagcloud component can retrieve. 
+               -->
           <af:showDetailHeader text="showDetailHeader 1" disclosed="true"
-                               id="detailHeader" visible="false"
-                               contentStyle="color:Lime; border-style:dotted; font-family:'Courier New', Courier, monospace;"/>
+                               id="detailHeader" visible="false" />
           <af:commandButton text="commandButton 1" id="button" visible="false"
                             inlineStyle="font-style:italic; text-decoration:underline;"/>
         </af:gridCell>

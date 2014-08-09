@@ -71,9 +71,14 @@ public class TagCloudBean {
 
     public String getInitialise() {
         getOtnBridge().getInitialiseBridge();
+        instructClientToInspectStylesAndNotifyTagCloud();
+        // temporarily switched off the regular tag loading, in order to show the effect from the JavaScript routine
+        // updateTags();
+        return null;
+    }
+
+    public void instructClientToInspectStylesAndNotifyTagCloud() {
         String guestId = "tc1";
-        
-        
         UIComponent p = getTagCloudUIComponent().findComponent("detailHeader");
         String clientIdDetailHeader = p.getClientId(FacesContext.getCurrentInstance());
         UIComponent q = getTagCloudUIComponent().findComponent("button");
@@ -83,13 +88,11 @@ public class TagCloudBean {
         +"{clientId: '" + clientIdDetailHeader + "', detailType: 'H2', stylesToRetrieve: ['font-family','background-color','font-size','color','font-weight','background-image']}"
         +",{clientId: '" + clientIdButton + "', detailType: null, stylesToRetrieve: ['border-top-color','text-decoration','font-style']}"
                               +"]}";
-        ADFHelper.sendJavascript("inspectStyles('" + clientIdDetailHeader + "', 'h2', '" +
-                                 guestId + "','" + otnBridge.getClientId() +
+        ADFHelper.sendJavascript("inspectStyles( '" +guestId + "','" 
+                                 + otnBridge.getClientId() +
                                  "',"+detailHeader+");");
-        // temporarily switched off the regular tag loading, in order to show the effect from the JavaScript routine
-        // updateTags();
-        return null;
     }
+
 
     private void updateTags() {
         StringBuilder sb = new StringBuilder("{tags:[");
