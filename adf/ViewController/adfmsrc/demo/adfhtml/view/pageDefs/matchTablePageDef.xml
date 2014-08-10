@@ -57,7 +57,7 @@
           <Item Value="LocalStartTime"/>
           <Item Value="Group1"/>
           <Item Value="City"/>
-          <Item Value="Tags"/>
+          <Item Value="Score"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

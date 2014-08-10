@@ -205,10 +205,11 @@ select home_country
 ,      away_country 
 ,      home_goals 
 ,      away_goals 
+,    home_goals ||'-'||away_goals score
 ,      m.id match_id
   ,      m.local_start_time
   ,      m.scoring_process
-  , m.group1
+  , nvl(m.group1, 'N/A') group1
   , city
 ,      tags
 from   ( select match_id
@@ -314,6 +315,21 @@ from   ( select match_id
           ResId="demo.adfhtml.model.RemainingMatches.AwayGoals_LABEL"/>
       </SchemaBasedProperties>
     </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Score"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="81"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SCORE"
+    Expression="SCORE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="81"/>
+    </DesignTime>
   </ViewAttribute>
   <ViewAttribute
     Name="MatchId"

@@ -68,20 +68,9 @@
       </AttrNames>
     </attributeValues>
     <attributeValues IterBinding="MatchResultsView1Iterator"
-                     id="LocalStartTime">
-      <AttrNames>
-        <Item Value="LocalStartTime"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="MatchResultsView1Iterator"
                      id="ScoringProcess">
       <AttrNames>
         <Item Value="ScoringProcess"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="MatchResultsView1Iterator" id="Id">
-      <AttrNames>
-        <Item Value="Id"/>
       </AttrNames>
     </attributeValues>
     <attributeValues IterBinding="MatchResultsView1Iterator" id="HomeCountryId">
@@ -92,18 +81,6 @@
     <attributeValues IterBinding="MatchResultsView1Iterator" id="AwayCountryId">
       <AttrNames>
         <Item Value="AwayCountryId"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="MatchResultsView1Iterator" id="City">
-      <AttrNames>
-        <Item Value="City"/>
-      </AttrNames>
-    </attributeValues>
-    <list IterBinding="MatchResultsView1Iterator" StaticList="false"
-          Uses="LOV_Name" id="Name" DTSupportsMRU="false"/>
-    <attributeValues IterBinding="MatchResultsView1Iterator" id="StadiumId">
-      <AttrNames>
-        <Item Value="StadiumId"/>
       </AttrNames>
     </attributeValues>
     <tree IterBinding="GroupStandingView3Iterator" id="GroupStandingView3">

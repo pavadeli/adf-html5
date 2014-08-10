@@ -174,7 +174,7 @@
    </hash>
    <hash n="oracle.jdeveloper.model.J2eeSettings">
       <value n="j2eeWebAppName" v="AdfHtml-ViewController-webapp"/>
-      <value n="j2eeWebContextRoot" v="AdfHtml-ViewController-context-root"/>
+      <value n="j2eeWebContextRoot" v="WorldCup2014_MatchCenter"/>
    </hash>
    <hash n="oracle.jdeveloper.runner.RunConfigurations">
       <hash n="runConfigurationDefinitions">

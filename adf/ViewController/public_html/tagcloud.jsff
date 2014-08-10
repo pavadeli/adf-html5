@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
-          xmlns:af="http://xmlns.oracle.com/adf/faces/rich" version="2.1">
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core">
   <af:panelBox text="#{bnd.TAG_CLOUD}" id="pb1"
                binding="#{pageFlowScope.tagCloudBean.tagCloudUIComponent}"
                icon="#{pageFlowScope.tagCloudBean.initialise}"
@@ -19,16 +20,21 @@
       <af:gridRow id="gr1a" height="auto"
                   rendered="#{pageFlowScope.tagCloudBean.editable}">
         <af:gridCell id="gc1a" width="100%">
+        <af:panelLabelAndMessage for="it1"  label="New Tag to Apply" id="plm1" >
+        
           <af:inputText value="#{pageFlowScope.tagCloudBean.newTag}"
-                        label="New Tag to Apply" columns="50"
+                         columns="30"
                         shortDesc="New tag to apply; you could consider #{pageFlowScope.tagCloudBean.previouslyAssignedTagsAsString} "
                         id="it1" partialTriggers="cl1"/>
-          <af:commandLink text="Add" id="cl1"
-                          actionListener="#{pageFlowScope.tagCloudBean.addTag}">
-            <af:image id="addTagI" source="/images/plus-icon-green-hi.png"
-                      shortDesc="Click to add new tag"
-                      inlineStyle="width:15.0px;"/>
-          </af:commandLink>
+            <f:facet name="end">
+              <af:commandLink text="Add" id="cl1"
+                              actionListener="#{pageFlowScope.tagCloudBean.addTag}">
+                <af:image id="addTagI" source="/images/plus-icon-green-hi.png"
+                          shortDesc="Click to add new tag"
+                          inlineStyle="width:15.0px;"/>
+              </af:commandLink>
+            </f:facet>
+          </af:panelLabelAndMessage>
           <af:iterator id="prevTagsIter"
                        value="#{pageFlowScope.tagCloudBean.previouslyAssignedTags}"
                        var="tag">
@@ -54,11 +60,22 @@
       <af:gridRow id="gr1b" height="auto"
                   rendered="#{!pageFlowScope.tagCloudBean.editable}">
         <af:gridCell id="gc1b" width="100%">
-          <af:inputText value="#{pageFlowScope.tagCloudBean.selectedTags}"
-                        label="Tags on which matches are filtered"
+        <af:panelLabelAndMessage for="it1b"  label="Tags on which matches are filtered" id="plm2" >
+        
+          <af:inputText value="#{pageFlowScope.tagCloudBean.selectedTags}"                        
                         autoSubmit="true" columns="50"
                         shortDesc="Comma separated list of tags used to filter the set of matches"
                         id="it1b"/>
+            <f:facet name="end">
+              <af:commandLink text="Reset" id="cl1b"
+                              actionListener="#{pageFlowScope.tagCloudBean.resetSelectedTags}">
+              <af:image id="resetTagsIMG" source="/images/Remove-icon.png"
+                        shortDesc="Click to reset"
+                        inlineStyle="width:15.0px;"/>
+              </af:commandLink>
+            </f:facet>
+          </af:panelLabelAndMessage>
+
         </af:gridCell>
       </af:gridRow>
       <af:gridRow id="gr2" height="100%">

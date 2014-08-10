@@ -23,17 +23,20 @@
                       styleClass="AFStretchWidth">
               <af:column sortProperty="#{bindings.RemainingMatches1.hints.MatchId.name}"
                          filterable="true" sortable="true"
-                         headerText="#{bnd.MATCH_NUMBER_COLUMN_TITLE}"
-                         id="c9">
+                         headerText="#{bnd.MATCH_NUMBER_COLUMN_TITLE}" id="c9">
                 <af:outputText value="#{row.MatchId}" id="ot8">
                   <af:convertNumber groupingUsed="false"
                                     pattern="#{bindings.RemainingMatches1.hints.MatchId.format}"/>
+                  <f:facet name="context">
+                    <af:contextInfo>
+                      <af:showPopupBehavior popupId=":::p1"
+                                            triggerType="click"/>
+                      <af:setPropertyListener type="contextInfo"
+                                              from="#{row.MatchId}"
+                                              to="#{pageFlowScope.matchHelperBean.selectedMatchId}"/>
+                    </af:contextInfo>
+                  </f:facet>
                 </af:outputText>
-                <af:commandLink text="..." id="cb1">
-                  <af:showPopupBehavior popupId=":::p1" triggerType="click"/>
-                  <af:setPropertyListener type="action" from="#{row.MatchId}"
-                                          to="#{pageFlowScope.matchHelperBean.selectedMatchId}"/>
-                </af:commandLink>
               </af:column>
               <af:column sortProperty="#{bindings.RemainingMatches1.hints.HomeCountry.name}"
                          filterable="true" sortable="true"
@@ -53,22 +56,11 @@
                           inlineStyle="height:25.0px;"/>
                 <af:outputText value="#{row.AwayCountry}" id="ot14"/>
               </af:column>
-              <af:column sortProperty="#{bindings.RemainingMatches1.hints.HomeGoals.name}"
+              <af:column sortProperty="#{bindings.RemainingMatches1.hints.Score.name}"
                          filterable="true" sortable="true"
-                         headerText="#{bnd.HOME_GOALS_COLUMN_TITLE}" id="c14">
-                <af:outputText value="#{row.HomeGoals}" id="ot16">
-                  <af:convertNumber groupingUsed="false"
-                                    pattern="#{bindings.RemainingMatches1.hints.HomeGoals.format}"/>
-                </af:outputText>
-              </af:column>
-              <af:column sortProperty="#{bindings.RemainingMatches1.hints.AwayGoals.name}"
-                         filterable="true" sortable="true"
-                         headerText="#{bnd.AWAY_GOALS_COLUMN_TITLE}"
-                         id="c13">
-                <af:outputText value="#{row.AwayGoals}" id="ot9">
-                  <af:convertNumber groupingUsed="false"
-                                    pattern="#{bindings.RemainingMatches1.hints.AwayGoals.format}"/>
-                </af:outputText>
+                         headerText="#{bindings.RemainingMatches1.hints.Score.label}"
+                         id="c15">
+                <af:outputText value="#{row.Score}" id="ot10"/>
               </af:column>
               <af:column sortProperty="#{bindings.RemainingMatches1.hints.LocalStartTime.name}"
                          filterable="true" sortable="true"
@@ -94,12 +86,6 @@
                          id="c8">
                 <af:outputText value="#{row.City}" id="ot12"/>
               </af:column>
-              <af:column sortProperty="#{bindings.RemainingMatches1.hints.Tags.name}"
-                         filterable="true" sortable="true"
-                         headerText="#{bindings.RemainingMatches1.hints.Tags.label}"
-                         id="c15">
-                <af:outputText value="#{row.Tags}" id="ot10"/>
-              </af:column>
             </af:table>
           </af:panelCollection>
         </f:facet>
@@ -113,15 +99,13 @@
       </af:panelSplitter>
     </f:facet>
     <f:facet name="start">
-    <af:spacer id="spacerLeft" width="10px" />
+      <af:spacer id="spacerLeft" width="10px"/>
     </f:facet>
     <f:facet name="end"/>
     <f:facet name="top"/>
   </af:panelStretchLayout>
- 
-  <af:popup id="p1" >
-    <af:panelWindow id="pw1" title="Match Details" resize="on" modal="true"
-                    inlineStyle="background-color:Orange;">
+  <af:popup id="p1">
+    <af:panelWindow id="pw1" title="Match Details" resize="on" modal="true">
       <af:region value="#{bindings.matchdetailstaskflowdefinition1.regionModel}"
                  id="r1"/>
     </af:panelWindow>

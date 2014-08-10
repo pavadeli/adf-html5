@@ -4,7 +4,7 @@ import javax.faces.event.ValueChangeEvent;
 
 public class LocaleBean {
    
-   private String language="nl";
+   private String language="en";
 
     public void setLanguage(String language) {
         this.language = language;

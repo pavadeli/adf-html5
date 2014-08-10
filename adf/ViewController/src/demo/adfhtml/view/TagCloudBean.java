@@ -140,6 +140,12 @@ public class TagCloudBean {
         _logger.warning("Event has been published");
     }
 
+
+    public void resetSelectedTags(ActionEvent ae) {
+        setSelectedTags("");
+    }
+
+
     public void addTag(ActionEvent ae) {
         // do your thing to add the tag set in the newTag property
         getTags().add(new Tag(getNewTag(), 1, false));
