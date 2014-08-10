@@ -117,6 +117,12 @@ rank_in_group]]>
     <DesignTime>
       <Attr Name="_DisplaySize" Value="22"/>
     </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="demo.adfhtml.model.GroupStandingView.GamesPlayed_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
   </ViewAttribute>
   <ViewAttribute
     Name="Points"
@@ -145,6 +151,12 @@ rank_in_group]]>
     <DesignTime>
       <Attr Name="_DisplaySize" Value="22"/>
     </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="demo.adfhtml.model.GroupStandingView.GoalDifference_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
   </ViewAttribute>
   <ViewAttribute
     Name="GoalsScored"
@@ -159,6 +171,12 @@ rank_in_group]]>
     <DesignTime>
       <Attr Name="_DisplaySize" Value="22"/>
     </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="demo.adfhtml.model.GroupStandingView.GoalsScored_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
   </ViewAttribute>
   <ViewAttribute
     Name="RankInGroup"
@@ -173,6 +191,12 @@ rank_in_group]]>
     <DesignTime>
       <Attr Name="_DisplaySize" Value="22"/>
     </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="demo.adfhtml.model.GroupStandingView.RankInGroup_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
   </ViewAttribute>
   <ViewLinkAccessor
     Name="MatchResultsInGroup"

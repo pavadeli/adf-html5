@@ -76,17 +76,8 @@
               <af:region value="#{bindings.tagcloudtaskflowdefinition1.regionModel}"
                          id="r1"/>
             </af:showDetailItem>
-            <af:showDetailItem text="Final Group Standing" id="sdi3"
+            <af:showDetailItem text="Final Group Standing in group #{bindings.Group1.inputValue}" id="sdi3"
                                rendered="#{bindings.Group1.inputValue != null}">
-              <af:inputText value="#{bindings.Group1.inputValue}"
-                            label="#{bindings.Group1.hints.label}"
-                            required="#{bindings.Group1.hints.mandatory}"
-                            columns="#{bindings.Group1.hints.displayWidth}"
-                            maximumLength="#{bindings.Group1.hints.precision}"
-                            shortDesc="#{bindings.Group1.hints.tooltip}"
-                            id="it12">
-                <f:validator binding="#{bindings.Group1.validator}"/>
-              </af:inputText>
               <af:panelCollection id="pc1" styleClass="AFStretchWidth"
                                   inlineStyle="height:400.0px;">
                 <f:facet name="menus"/>
@@ -162,7 +153,7 @@
     <f:facet name="top">
       <af:panelFormLayout id="pfl1">
         <af:panelGroupLayout id="flagsPGL" layout="horizontal"
-                             inlineStyle="width:600px; background-color:yellow;">
+                             inlineStyle="width:400px; background-color:yellow;">
           <af:panelGridLayout id="pgl1" >
             <af:gridRow marginTop="5px" height="auto" id="gr1">
               <af:gridCell marginStart="5px" width="30%" id="gc4"  halign="center" valign="bottom">
